@@ -19,25 +19,20 @@ val mClass = "com.wire.backups.exports.Service"
 repositories {
     jcenter()
 
-    // lithium
-    maven {
-        url = uri("https://packagecloud.io/dkovacevic/helium/maven2")
-    }
+    mavenCentral()
 
     maven {
-        url = uri("https://packagecloud.io/dkovacevic/xenon/maven2")
+        url = uri("https://repo.spring.io/release")
     }
-
-    // transitive dependency for the lithium
     maven {
-        url = uri("https://packagecloud.io/dkovacevic/cryptobox4j/maven2")
+        url = uri("https://repository.jboss.org/maven2")
     }
 }
 
 
 dependencies {
     // ------- Java dependencies -------
-    implementation("com.wire", "helium", "1.0-SNAPSHOT")
+    implementation("com.wire", "helium", "1.3.1")
     implementation("org.glassfish.jersey.inject", "jersey-hk2", "2.32")
     implementation("org.glassfish.jersey.media", "jersey-media-json-jackson", "2.32")
     implementation("javax.activation", "activation", "1.1.1")
@@ -91,6 +86,7 @@ dependencies {
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit5"))
     testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", junitVersion)
+    implementation(kotlin("script-runtime"))
 }
 
 application {
