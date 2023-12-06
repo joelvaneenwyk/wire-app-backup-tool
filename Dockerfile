@@ -22,7 +22,8 @@ RUN ./gradlew shadowJar --no-daemon
 
 # Runtime
 FROM adoptopenjdk/openjdk11:alpine-jre
-RUN apk add bash
+RUN apk add bash \
+  && apk cache clean
 
 ENV APP_ROOT /app
 WORKDIR $APP_ROOT
@@ -31,12 +32,12 @@ WORKDIR $APP_ROOT
 COPY --from=build /src/build/libs/backup-export.jar $APP_ROOT/
 
 # copy entrypoint
-COPY entrypoint.sh $APP_ROOT/entrypoint.sh
+COPY entrypoint.sh "$APP_ROOT/entrypoint.sh"
 # ensure it is executable
-RUN chmod +x $APP_ROOT/entrypoint.sh
+RUN chmod +x "$APP_ROOT/entrypoint.sh"
 
 # copy database decryption lib
-RUN mkdir $APP_ROOT/libs
+RUN mkdir "$APP_ROOT/libs"
 COPY libs/libsodium.so $APP_ROOT/libs/
 
 # execute run script
