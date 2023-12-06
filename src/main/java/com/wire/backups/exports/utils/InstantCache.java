@@ -7,7 +7,7 @@ import com.wire.helium.LoginClient;
 import com.wire.helium.models.Access;
 import com.wire.xenon.backend.models.User;
 import com.wire.xenon.exceptions.HttpException;
-import com.wire.xenon.models.MessageAssetBase;
+import com.wire.xenon.models.MessageAssetBase; // Switch to AssetKey
 import com.wire.xenon.tools.Logger;
 import com.wire.xenon.tools.Util;
 
