@@ -1,0 +1,11 @@
+version: "0.2"
+ignorePaths: []
+dictionaryDefinitions:
+  - name: wire-app-backup-tool
+    path: ./.github/config/cspell-wire-app-backup-tool.dict
+    addWords: true
+dictionaries:
+  - wire-app-backup-tool
+words: []
+ignoreWords: []
+import: []
