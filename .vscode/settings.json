@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "gradlew": "shellscript"
+    },
+    "cSpell.words": [
+        "adoptopenjdk",
+        "gradlew",
+        "libsodium"
+    ]
+}
