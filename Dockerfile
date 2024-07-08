@@ -2,7 +2,7 @@ FROM adoptopenjdk/openjdk11:alpine AS build
 LABEL description="Wire Export Backup Tool"
 LABEL project="wire-bots:exports"
 
-ENV PROJECT_ROOT /src
+ENV PROJECT_ROOT=/src
 WORKDIR $PROJECT_ROOT
 
 # Copy gradle settings
@@ -21,9 +21,9 @@ COPY src $PROJECT_ROOT/src
 RUN ./gradlew shadowJar --no-daemon
 
 # Runtime
-FROM adoptopenjdk/openjdk11:alpine-jre
-RUN apk add bash \
-  && apk cache clean
+FROM adoptopenjdk/openjdk11:alpine-jre AS jre
+
+RUN apk add bash
 
 ENV APP_ROOT /app
 WORKDIR $APP_ROOT
