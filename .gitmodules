@@ -1,0 +1,3 @@
+[submodule "src/xenon"]
+	path = src/xenon
+	url = https://github.com/wireapp/xenon.git
