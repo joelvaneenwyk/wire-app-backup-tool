@@ -36,9 +36,9 @@ while [ -h "$PRG" ]; do
   fi
 done
 SAVED="$(pwd)"
-cd "$(dirname \"$PRG\")/" >/dev/null
+cd "$(dirname "$PRG")/" 2>/dev/null || true
 APP_HOME="$(pwd -P)"
-cd "$SAVED" >/dev/null
+cd "$SAVED" 2>/dev/null || true
 
 APP_NAME="Gradle"
 APP_BASE_NAME=$(basename "$0")
