@@ -63,3 +63,10 @@ jdbi3-sqlobject = { module = "org.jdbi:jdbi3-sqlobject", version.ref = "jdbi3-sq
 junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit-jupiter-api" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter-engine" }
 slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j-simple" }
+
+katlib = { module = "pw.forst.tools:katlib", version = "1.2.1" }
+lazysodium-java = { module = "com.goterl.lazycode:lazysodium-java", version = "4.3.4" }
+exposed-core = { module = "org.jetbrains.exposed:exposed-core", version = "0.30.1" }
+exposed-dao = { module = "org.jetbrains.exposed:exposed-dao", version = "0.30.1" }
+exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version = "0.30.1" }
+exposed-java-time = { module = "org.jetbrains.exposed:exposed-java-time", version = "0.30.1" }

@@ -9,6 +9,63 @@ plugins {
 dependencies {
     implementation("org.apache.commons:commons-text")
     implementation(project(":xenon"))
+
+     // ------- Java dependencies -------
+     //implementation("com.wire", "helium", "1.0-SNAPSHOT")
+
+     implementation("org.glassfish.jersey.inject", "jersey-hk2", "2.32")
+     implementation("org.glassfish.jersey.media", "jersey-media-json-jackson", "2.32")
+     implementation("javax.activation", "activation", "1.1.1")
+
+     implementation("org.slf4j", "slf4j-simple", "2.0.0-alpha1")
+
+     // command line arguments parsing
+     implementation("info.picocli", "picocli", "4.6.1")
+
+     // html compilation
+     val atlassianVersion = "0.17.1"
+     implementation("org.commonmark", "commonmark", atlassianVersion)
+     implementation("org.commonmark", "commonmark-ext-autolink", atlassianVersion)
+
+     val htmlToPdfVersion = "1.0.6"
+     implementation("com.openhtmltopdf", "openhtmltopdf-core", htmlToPdfVersion)
+     implementation("com.openhtmltopdf", "openhtmltopdf-pdfbox", htmlToPdfVersion)
+     implementation("com.openhtmltopdf", "openhtmltopdf-svg-support", htmlToPdfVersion)
+
+     implementation("com.github.spullara.mustache.java", "compiler", "0.9.7")
+
+     // ------- Common dependencies -------
+     implementation("net.lingala.zip4j", "zip4j", "2.6.1")
+
+     // ------- Kotlin dependencies -------
+     implementation("pw.forst.tools", "katlib", "1.2.1")
+
+     // libsodium for decryption
+     implementation("com.goterl.lazycode", "lazysodium-java", "4.3.4") {
+         // otherwise the application won't start, the problem is combination of Dropwizard and sl4j 2.0
+         exclude("org.slf4j", "slf4j-api")
+     }
+     implementation("net.java.dev.jna", "jna", "5.7.0")
+     // logging
+     implementation("io.github.microutils", "kotlin-logging", "2.0.6")
+     // database
+     val exposedVersion = "0.30.1"
+     implementation("org.jetbrains.exposed", "exposed-core", exposedVersion)
+     implementation("org.jetbrains.exposed", "exposed-dao", exposedVersion)
+     implementation("org.jetbrains.exposed", "exposed-jdbc", exposedVersion)
+     implementation("org.jetbrains.exposed", "exposed-java-time", exposedVersion)
+     implementation("org.xerial", "sqlite-jdbc", "3.34.0")
+     // jackson for kotlin
+     implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", "2.11.1")
+     // correct reflect lib until jackson fixes theirs
+     implementation("org.jetbrains.kotlin", "kotlin-reflect", "1.4.31")
+
+     // testing
+     val junitVersion = "5.7.1"
+     testImplementation("org.junit.jupiter", "junit-jupiter-api", junitVersion)
+     testImplementation(kotlin("test"))
+     testImplementation(kotlin("test-junit5"))
+     testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", junitVersion)
 }
 
 application {
@@ -55,77 +112,18 @@ application {
 //     }
 // }
 //
-//
-// dependencies {
-//     // ------- Java dependencies -------
-//     implementation("com.wire", "helium", "1.0-SNAPSHOT")
-//     implementation("org.glassfish.jersey.inject", "jersey-hk2", "2.32")
-//     implementation("org.glassfish.jersey.media", "jersey-media-json-jackson", "2.32")
-//     implementation("javax.activation", "activation", "1.1.1")
-//
-//     implementation("org.slf4j", "slf4j-simple", "2.0.0-alpha1")
-//
-//     // command line arguments parsing
-//     implementation("info.picocli", "picocli", "4.6.1")
-//
-//     // html compilation
-//     val atlassianVersion = "0.17.1"
-//     implementation("org.commonmark", "commonmark", atlassianVersion)
-//     implementation("org.commonmark", "commonmark-ext-autolink", atlassianVersion)
-//
-//     val htmlToPdfVersion = "1.0.6"
-//     implementation("com.openhtmltopdf", "openhtmltopdf-core", htmlToPdfVersion)
-//     implementation("com.openhtmltopdf", "openhtmltopdf-pdfbox", htmlToPdfVersion)
-//     implementation("com.openhtmltopdf", "openhtmltopdf-svg-support", htmlToPdfVersion)
-//
-//     implementation("com.github.spullara.mustache.java", "compiler", "0.9.7")
-//
-//     // ------- Common dependencies -------
-//     implementation("net.lingala.zip4j", "zip4j", "2.6.1")
-//
-//     // ------- Kotlin dependencies -------
-//     implementation("pw.forst.tools", "katlib", "1.2.1")
-//
-//     // libsodium for decryption
-//     implementation("com.goterl.lazycode", "lazysodium-java", "4.3.4") {
-//         // otherwise the application won't start, the problem is combination of Dropwizard and sl4j 2.0
-//         exclude("org.slf4j", "slf4j-api")
-//     }
-//     implementation("net.java.dev.jna", "jna", "5.7.0")
-//     // logging
-//     implementation("io.github.microutils", "kotlin-logging", "2.0.6")
-//     // database
-//     val exposedVersion = "0.29.1"
-//     implementation("org.jetbrains.exposed", "exposed-core", exposedVersion)
-//     implementation("org.jetbrains.exposed", "exposed-dao", exposedVersion)
-//     implementation("org.jetbrains.exposed", "exposed-jdbc", exposedVersion)
-//     implementation("org.jetbrains.exposed", "exposed-java-time", exposedVersion)
-//     implementation("org.xerial", "sqlite-jdbc", "3.34.0")
-//     // jackson for kotlin
-//     implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", "2.11.1")
-//     // correct reflect lib until jackson fixes theirs
-//     implementation("org.jetbrains.kotlin", "kotlin-reflect", "1.4.31")
-//
-//     // testing
-//     val junitVersion = "5.7.1"
-//     testImplementation("org.junit.jupiter", "junit-jupiter-api", junitVersion)
-//     testImplementation(kotlin("test"))
-//     testImplementation(kotlin("test-junit5"))
-//     testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", junitVersion)
-// }
-//
 // application {
 //     mainClass.set(mClass)
 //     // Desired way mainClass.set("<main class>") causes an issue during jar packaging
 //     @Suppress("DEPRECATION")
 //     mainClassName = mClass
 // }
-//
-// configure<JavaPluginConvention> {
-//     sourceCompatibility = JavaVersion.VERSION_1_8
-// }
-//
-// tasks {
+
+configure<JavaPluginConvention> {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks {
 //     compileKotlin {
 //         kotlinOptions.jvmTarget = "1.8"
 //     }
@@ -184,4 +182,4 @@ application {
 //             }
 //         }
 //     }
-// }
+}
