@@ -11,4 +11,4 @@ plugins {
 }
 
 rootProject.name = "backup-exports"
-include("app", "list", "utilities", "xenon")
+include("app", "xenon")
