@@ -1,0 +1,32 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  EXPORT_TOOL_VERSION: 2.0.0
+  DOCKER_IMAGE: 'quay.io/wire/backup-export-tool:{{ .EXPORT_TOOL_VERSION }}'
+
+tasks:
+  default:
+    task: build
+
+  build:
+    cmds:
+      - cmd.exe /D /C gradlew build
+
+  docker-get:
+    cmds:
+      - docker pull {{ .DOCKER_IMAGE }}
+      - docker run --rm -it -v "{{ joinPath .TASKFILE_DIR "app" }}":/app_copy {{ .DOCKER_IMAGE }} bash -c "cp -r /app/* /app_copy"
+
+  docker-run:
+    interactive: true
+    cmds:
+      - docker run -it -v "{{ joinPath .TASKFILE_DIR "app" }}":"/app_copy" --entrypoint /bin/sh {{ .DOCKER_IMAGE }}
+
+  docker-debug:
+    interactive: true
+    cmds:
+      - docker exec -it -v "{{ joinPath .TASKFILE_DIR "app" }}":"/app_copy" {{ .DOCKER_IMAGE }} /bin/sh
+
+# version which should be used for export
