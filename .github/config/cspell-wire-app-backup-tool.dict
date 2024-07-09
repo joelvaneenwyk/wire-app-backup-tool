@@ -1,6 +1,10 @@
 # Custom Dictionary Words
 apdisk
+bruceadams
+buildx
+Buildx
 classpath
+conv
 cryptobox
 ctxt
 databind
@@ -14,6 +18,7 @@ fasterxml
 flywaydb
 Forst
 fseventsd
+ghaction
 goterl
 gradletasknamecache
 icns
@@ -45,5 +50,7 @@ Sonarlint
 sonatype
 sqlobject
 stackdump
+taged
 TASKFILE
+temurin
 timemachine
