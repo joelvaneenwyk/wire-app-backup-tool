@@ -1,3 +1,4 @@
-[submodule "src/xenon"]
-	path = src/xenon
-	url = https://github.com/wireapp/xenon.git
+[submodule "libs/xenon"]
+	path = libs/xenon
+	url = https://github.com/joelvaneenwyk/wire-app-lib-xenon.git
+	branch = main

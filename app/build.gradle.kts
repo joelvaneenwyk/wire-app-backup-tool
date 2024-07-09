@@ -1,14 +1,4 @@
-import org.jetbrains.kotlin.konan.file.File
-import org.jetbrains.kotlin.konan.properties.saveToFile
 import java.util.Properties
-
-plugins {
-    java
-    kotlin("jvm") version "1.4.31"
-    application
-    id("net.nemerosa.versioning") version "2.14.0"
-    id("com.github.johnrengelman.shadow") version "6.1.0"
-}
 
 group = "com.wire.backups"
 version = (versioning.info.tag ?: versioning.info.lastTag) +
@@ -16,22 +6,21 @@ version = (versioning.info.tag ?: versioning.info.lastTag) +
 
 val mClass = "com.wire.backups.exports.Service"
 
+plugins {
+    id("java")
+    id("application")
+    id("kotlin-gradle-plugin")
+    //id("maven-publish")
+    id("nemerosa-versioning")
+    id("johnrengelman-shadow")
+    id("protobufGradlePlugin")
+}
+
 repositories {
-    jcenter()
-
-    // lithium
-    maven {
-        url = uri("https://packagecloud.io/dkovacevic/helium/maven2")
-    }
-
-    maven {
-        url = uri("https://packagecloud.io/dkovacevic/xenon/maven2")
-    }
-
-    // transitive dependency for the lithium
-    maven {
-        url = uri("https://packagecloud.io/dkovacevic/cryptobox4j/maven2")
-    }
+    gradlePluginPortal()
+    mavenCentral()
+    mavenLocal()
+    google()
 }
 
 
@@ -105,12 +94,12 @@ configure<JavaPluginConvention> {
 }
 
 tasks {
-    compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
-    }
-    compileTestKotlin {
-        kotlinOptions.jvmTarget = "1.8"
-    }
+    //compileKotlin {
+    //    kotlinOptions.jvmTarget = "1.8"
+    //}
+    //compileTestKotlin {
+    //    kotlinOptions.jvmTarget = "1.8"
+    //}
 
     withType<Test> {
         systemProperties["jna.library.path"] = "${projectDir}/libs"
@@ -120,19 +109,19 @@ tasks {
         options.encoding = "UTF-8"
     }
 
-    shadowJar {
-        mergeServiceFiles()
-        manifest {
-            attributes(mapOf("Main-Class" to mClass))
-        }
-        // because there's some conflict (LICENSE already exists) during the unzipping process
-        // by excluding it from the shadow jar we try to fix problem on Oracle JVM 8
-        exclude("LICENSE")
-        // standard Dropwizard excludes
-        exclude("META-INF/*.DSA", "META-INF/*.RSA", "META-INF/*.SF")
-        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-        archiveFileName.set("backup-export.jar")
-    }
+    // shadowJar {
+    //     mergeServiceFiles()
+    //     manifest {
+    //         attributes(mapOf("Main-Class" to mClass))
+    //     }
+    //     // because there's some conflict (LICENSE already exists) during the unzipping process
+    //     // by excluding it from the shadow jar we try to fix problem on Oracle JVM 8
+    //     exclude("LICENSE")
+    //     // standard Dropwizard excludes
+    //     exclude("META-INF/*.DSA", "META-INF/*.RSA", "META-INF/*.SF")
+    //     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    //     archiveFileName.set("backup-export.jar")
+    // }
 
     test {
         useJUnitPlatform()
@@ -142,15 +131,15 @@ tasks {
         dependsOn("createVersionFile")
     }
 
-    register("createVersionFile") {
-        dependsOn(processResources)
-        doLast {
-            Properties().apply {
-                setProperty("version", project.version.toString())
-                saveToFile(File("$buildDir/resources/main/version.properties"))
-            }
-        }
-    }
+    //register("createVersionFile") {
+    //    dependsOn(processResources)
+    //    doLast {
+    //        Properties().apply {
+    //            setProperty("version", project.version.toString())
+    //            saveToFile(File("$buildDir/resources/main/version.properties"))
+    //        }
+    //    }
+    //}
 
     register("resolveDependencies") {
         doLast {
