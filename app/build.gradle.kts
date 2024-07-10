@@ -1,4 +1,3 @@
-import java.util.*
 import java.util.Properties
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
@@ -9,12 +8,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     id("buildlogic.java-application-conventions")
     id("org.jetbrains.kotlin.jvm") version "1.4.31"
-
-    // java
-    // // kotlin("jvm") version "1.4.31"
-    // application
-    //id("net.nemerosa.versioning") version("2.15.1")
-    //id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("net.nemerosa.versioning") version "3.1.0"
 }
 
 dependencies {
@@ -24,6 +18,7 @@ dependencies {
     implementation(libs.pluginz.kotlin)
 
     implementation(libs.github.johnrengelman.shadow)
+    implementation(libs.nemerosa.versioning)
 
     testImplementation(libs.pluginz.test)
     testImplementation(libs.pluginz.test.junit5)
@@ -38,8 +33,6 @@ dependencies {
 
     // ------- Java dependencies -------
     //implementation("com.wire", "helium", "1.0-SNAPSHOT")
-
-    implementation("net.nemerosa.versioning", "net.nemerosa.versioning.gradle.plugin", "2.15.1")
 
     implementation("org.glassfish.jersey.inject", "jersey-hk2", "2.32")
     implementation("org.glassfish.jersey.media", "jersey-media-json-jackson", "2.32")
@@ -99,19 +92,13 @@ dependencies {
 group = "com.wire.backups"
 val mClass = "com.wire.backups.exports.Service"
 
-//version = (versioning.info.tag ?: versioning.info.lastTag) +
-//        if (versioning.info.dirty) "-dirty" else ""
+version = (versioning.info.tag ?: versioning.info.lastTag) +
+        if (versioning.info.dirty) "-dirty" else ""
 
 application {
     // Define the main class for the application.
     mainClass.set(mClass)
 }
-
-//
-// [[Reference]]
-//
-// repositories {
-// }
 
 configure<JavaPluginExtension> {
     sourceCompatibility = JavaVersion.VERSION_1_8

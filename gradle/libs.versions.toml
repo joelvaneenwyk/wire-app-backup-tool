@@ -38,6 +38,8 @@ johnrengelman-shadow = "8.1.1"
 
 jetbrains-kotlin-test = "2.0.0"
 
+nemerosa-versioning = "3.1.0"
+
 [libraries]
 junit = { module = "junit:junit", version.ref = "junit" }
 
@@ -45,6 +47,8 @@ kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", v
 
 pluginz-konan = { module = "org.jetbrains.kotlin.konan:org.jetbrains.kotlin.konan.gradle.plugin", version.ref = "jetbrains-konan-gradle-plugin" }
 github-johnrengelman-shadow = { module = "com.github.johnrengelman:shadow", version.ref = "johnrengelman-shadow" }
+
+nemerosa-versioning = { module = "net.nemerosa.versioning:net.nemerosa.versioning.gradle.plugin", version.ref = "nemerosa-versioning" }
 
 pluginz-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "jetbrains-kotlin-test" }
 pluginz-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "jetbrains-kotlin-test" }
