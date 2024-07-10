@@ -17,4 +17,5 @@ repositories {
 
 dependencies {
     implementation(libs.kotlin.gradle.plugin)
+    implementation(libs.github.johnrengelman.shadow)
 }
