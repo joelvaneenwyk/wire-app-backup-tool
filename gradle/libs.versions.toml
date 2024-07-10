@@ -29,8 +29,26 @@ junit-jupiter-api = "5.9.2"
 junit-jupiter-engine = "5.9.2"
 slf4j-simple = "2.0.13"
 
+kotlin-gradle-plugin = "1.9.22"
+jetbrains-konan-gradle-plugin = "1.3.41"
+johnrengelman-shadow-gradle-plugin = "7.1.2"
+
+# https://mvnrepository.com/artifact/org.jetbrains.kotlin.konan/org.jetbrains.kotlin.konan.gradle.plugin
+# implementation("org.jetbrains.kotlin.konan:org.jetbrains.kotlin.konan.gradle.plugin:1.3.41")
+
+jetbrains-kotlin-test = "2.0.0"
+
 [libraries]
 junit = { module = "junit:junit", version.ref = "junit" }
+
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-gradle-plugin" }
+
+pluginz-konan = { module = "org.jetbrains.kotlin.konan:org.jetbrains.kotlin.konan.gradle.plugin", version.ref = "jetbrains-konan-gradle-plugin" }
+pluginz-shadow = { module = "com.github.johnrengelman.shadow:com.github.johnrengelman.shadow.gradle.plugin", version.ref = "johnrengelman-shadow-gradle-plugin" }
+
+pluginz-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "jetbrains-kotlin-test" }
+pluginz-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "jetbrains-kotlin-test" }
+pluginz-script-runtime = { module = "org.jetbrains.kotlin:kotlin-script-runtime", version.ref = "jetbrains-kotlin-test" }
 
 # `plugins` is a keyword in version catalogs.
 # Check https://docs.gradle.org/current/userguide/platforms.html#sec:version-catalog-plugin
