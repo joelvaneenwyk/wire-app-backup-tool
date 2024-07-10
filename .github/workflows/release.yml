@@ -8,7 +8,10 @@ jobs:
   docker_release:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
 
       # extract metadata for labels https://github.com/crazy-max/ghaction-docker-meta
       - name: Docker meta
@@ -53,13 +56,17 @@ jobs:
   jar_release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      # sets up jdk
-      - name: Setup JDK
-        uses: actions/setup-java@v1
+      - uses: actions/checkout@v4
         with:
-          java-version: 8
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          # Running setup-java again overwrites the settings.xml
+          distribution: 'temurin'
+          java-version: 11
 
       # Builds application
       - name: Build application
@@ -90,14 +97,3 @@ jobs:
           asset_path: backup-export.zip
           asset_name: backup-export.zip
           asset_content_type: application/zip
-
-      # Send webhook to Wire using Slack Bot
-      - name: Webhook to Wire
-        uses: 8398a7/action-slack@v2
-        with:
-          status: ${{ job.status }}
-          author_name: Backups Exports JAR Release Pipeline
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.WEBHOOK_RELEASE }}
-        # Notify every release
-        if: always()

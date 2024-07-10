@@ -2,7 +2,9 @@ name: CI test pipelines
 
 on:
   push:
+    branches: [main, develop, master]
   pull_request:
+    branches: [main, develop, master]
 
 jobs:
   test:
@@ -11,14 +13,19 @@ jobs:
     strategy:
       matrix:
         os: [ windows-latest, ubuntu-20.04 ]
-        java: [ 8, 11 ]
+        java: [ 11 ]
 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Setup JDK
-        uses: actions/setup-java@v1
+      - uses: actions/checkout@v4
         with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          # Running setup-java again overwrites the settings.xml
+          distribution: 'temurin'
           java-version: ${{ matrix.java }}
 
       - name: Display JDK version

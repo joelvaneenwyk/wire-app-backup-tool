@@ -302,3 +302,6 @@ Recording Test.html
 data/
 target/
 tmp/
+
+# Ignore Gradle build output directory
+build/
