@@ -102,15 +102,18 @@ application {
 }
 
 configure<JavaPluginExtension> {
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 tasks {
      compileKotlin {
-         kotlinOptions.jvmTarget = "1.8"
      }
+
      compileTestKotlin {
-         kotlinOptions.jvmTarget = "1.8"
      }
 
      withType<Test> {
