@@ -30,6 +30,7 @@ dependencies {
 
     implementation("org.apache.commons:commons-text")
     implementation(project(":xenon"))
+    implementation(project(":helium"))
 
     // ------- Java dependencies -------
     //implementation("com.wire", "helium", "1.0-SNAPSHOT")
