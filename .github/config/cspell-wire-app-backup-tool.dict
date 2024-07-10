@@ -19,15 +19,18 @@ flywaydb
 Forst
 fseventsd
 ghaction
+glassfish
 goterl
 gradletasknamecache
 icns
 javadocs
 javax
+jaxrs
 jdbc
 jdbi
 johnrengelman
 katlib
+konan
 kotlinpoet
 kotlinx
 Kovacevic
@@ -54,3 +57,4 @@ taged
 TASKFILE
 temurin
 timemachine
+tyrus
