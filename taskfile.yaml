@@ -16,10 +16,9 @@ tasks:
       GRADLEW_FILENAME: '{{ if eq OS "windows" }}gradlew.bat{{ else }}gradlew{{ end }}'
       RUN: '{{ if eq OS "windows" }}cmd /D /E:ON /C{{ else }}bash -c{{ end }}'
     cmds:
+      - cmd: git submodule update --init --recursive --checkout
       - cmd: |
           {{.RUN}} call "{{ joinPath .TASKFILE_DIR .GRADLEW_FILENAME }}" build
-      - cmd: |
-          echo "Copying the built jar to the app directory"
 
   docker-get:
     cmds:
