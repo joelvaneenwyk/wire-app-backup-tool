@@ -4,18 +4,54 @@ version: '3'
 
 vars:
   EXPORT_TOOL_VERSION: 2.0.0
-  DOCKER_IMAGE: 'quay.io/wire/backup-export-tool:{{ .EXPORT_TOOL_VERSION }}'
+  DOCKER_IMAGE: 'quay.io/joelvaneenwyk/wire-app-backup-tool:{{ .EXPORT_TOOL_VERSION }}'
 
 tasks:
   default:
     cmds:
       - task: build
 
+  extract:
+    cmds:
+      - cmd: >-
+          docker run
+          --rm -it
+          -v "{{ joinPath .TASKFILE_DIR "assets" "wire_sample_backup.desktop_wbu" }}":/app/database-in
+          -v "{{ joinPath .TASKFILE_DIR "assets" "output" }}":/app/database-out
+          -e CLIENT_TYPE="${CLIENT_TYPE}"
+          -e WIRE_USER="${WIRE_USER}"
+          -e WIRE_PASSWORD="${WIRE_PASSWORD}"
+          -e BACKUP_PASSWORD="${BACKUP_PASSWORD}"
+          -e BACKUP_USERNAME="${BACKUP_USER}"
+          -e WIRE_API_HOST="${WIRE_API_HOST}"
+          -e USE_PROXY="${USE_PROXY}"
+          -e PROXY_URL="${PROXY_URL}"
+          -e PROXY_PORT="${PROXY_PORT}"
+          -e NON_PROXY_HOSTS="${NON_PROXY_HOSTS}"
+          {{ .DOCKER_IMAGE }}
+    vars:
+      DOCKER_IMAGE: '{{ .DOCKER_IMAGE | default "quay.io/wire/backup-export-tool:latest" }}'
+
+      CLIENT_TYPE: '{{ .CLIENT_TYPE | default "web" }}'
+      WIRE_USER: '{{ .WIRE_USER | default "my.wire.user@gmail.com" }}'
+      WIRE_PASSWORD: '{{ .WIRE_PASSWORD | default "" }}'
+
+      BACKUP_USER:
+      BACKUP_PASSWORD:
+
+      WIRE_API_HOST: '{{ .WIRE_API_HOST | default "https://prod-nginz-https.wire.com" }}'
+
+      USE_PROXY:
+      PROXY_URL:
+      PROXY_PORT:
+      NON_PROXY_HOSTS:
+
   git-submodules:
     status:
-      - test -f "{{ joinPath .TASKFILE_DIR "helium" ".gitignore" }}"
-      - test -f "{{ joinPath .TASKFILE_DIR "xenon" ".gitignore" }}"
+      - test -f "{{ joinPath .TASKFILE_DIR "lib" "helium" ".gitignore" }}"
+      - test -f "{{ joinPath .TASKFILE_DIR "lib" "xenon" ".gitignore" }}"
     cmds:
+      - git add .
       - git submodule update --init --recursive
 
   build:
