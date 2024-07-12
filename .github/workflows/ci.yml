@@ -119,7 +119,7 @@ jobs:
         id: get_release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        uses: bruceadams/get-release@v1.2.0
+        uses: bruceadams/get-release@v1.3.2
 
       # Upload ganymede zip to the releases
       - name: Upload Ganymede Release
