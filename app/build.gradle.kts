@@ -29,11 +29,15 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     implementation("org.apache.commons:commons-text")
-    implementation(project(":xenon"))
-    implementation(project(":helium"))
+
+    implementation(libs.wire.xenon)
+    // implementation(project(":libs:xenon"))
+
+    implementation(libs.wire.helium)
+    // implementation("com.wire", "helium", "1.0-SNAPSHOT")
+    // implementation(project(":libs:helium"))
 
     // ------- Java dependencies -------
-    //implementation("com.wire", "helium", "1.0-SNAPSHOT")
 
     implementation("org.glassfish.jersey.inject", "jersey-hk2", "2.32")
     implementation("org.glassfish.jersey.media", "jersey-media-json-jackson", "2.32")

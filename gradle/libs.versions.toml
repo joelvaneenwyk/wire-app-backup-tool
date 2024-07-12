@@ -55,8 +55,14 @@ org-postgresql-postgresql = "42.3.8"
 org-slf4j-slf4j-api = "1.7.36"
 org-slf4j-slf4j-log4j12 = "1.7.36"
 
+wire-xenon = "1.4.6"
+wire-helium = "1.3.1"
+
 [libraries]
 junit = { module = "junit:junit", version.ref = "junit" }
+
+wire-xenon = { module = "com.wire:xenon", version.ref = "wire-xenon" }
+wire-helium = { module = "com.wire:helium", version.ref = "wire-helium" }
 
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-gradle-plugin" }
 

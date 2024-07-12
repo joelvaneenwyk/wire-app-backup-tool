@@ -16,4 +16,4 @@ plugins {
 }
 
 rootProject.name = "backup-exports"
-include("xenon", "helium", "app")
+include("libs", "app")
