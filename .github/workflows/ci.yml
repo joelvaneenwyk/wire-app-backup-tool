@@ -83,3 +83,52 @@ jobs:
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
           push: true
+
+  jar_release:
+    needs: build_server
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          # Running setup-java again overwrites the settings.xml
+          distribution: 'temurin'
+          java-version: 11
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      # Builds application
+      - name: Build application
+        run: |
+          ./gradlew shadowJar
+
+      # Creates release zip
+      - name: Create release zip
+        run: |
+          cp build/libs/backup-export.jar .
+          zip -r backup-export.zip backup-export.jar libs README.md
+
+      # Obtains release URL to upload assets
+      - name: Get Release Id
+        id: get_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: bruceadams/get-release@v1.2.0
+
+      # Upload ganymede zip to the releases
+      - name: Upload Ganymede Release
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.get_release.outputs.upload_url }}
+          asset_path: backup-export.zip
+          asset_name: backup-export.zip
+          asset_content_type: application/zip
