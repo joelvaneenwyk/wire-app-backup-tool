@@ -1,7 +1,7 @@
 [submodule "libs/xenon"]
 	path = libs/xenon
 	url = https://github.com/joelvaneenwyk/wire-app-lib-xenon
-	branch = feature/1.4.6-gradle
+	branch = release/1.4.6
 [submodule "libs/helium"]
 	path = libs/helium
 	url = https://github.com/joelvaneenwyk/wire-app-lib-helium
