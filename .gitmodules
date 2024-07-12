@@ -1,8 +1,8 @@
-[submodule "xenon"]
-	path = xenon
-	url = https://github.com/joelvaneenwyk/wire-app-lib-xenon.git
+[submodule "libs/xenon"]
+	path = libs/xenon
+	url = https://github.com/joelvaneenwyk/wire-app-lib-xenon
 	branch = main
-[submodule "helium"]
-	path = helium
-	url = https://github.com/joelvaneenwyk/wire-app-lib-helium.git
+[submodule "libs/helium"]
+	path = libs/helium
+	url = https://github.com/joelvaneenwyk/wire-app-lib-helium
 	branch = main
