@@ -8,25 +8,12 @@ plugins {
 }
 
 repositories {
+    gradlePluginPortal()
+
     // Use Maven Central for resolving dependencies.
     mavenCentral()
-    gradlePluginPortal()
-    mavenLocal()
     google()
-
-     // lithium
-     maven {
-         url = uri("https://packagecloud.io/dkovacevic/helium/maven2")
-     }
-
-     maven {
-         url = uri("https://packagecloud.io/dkovacevic/xenon/maven2")
-     }
-
-     // transitive dependency for the lithium
-     maven {
-         url = uri("https://packagecloud.io/dkovacevic/cryptobox4j/maven2")
-     }
+    mavenLocal()
 }
 
 dependencies {

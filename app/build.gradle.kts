@@ -9,6 +9,7 @@ plugins {
     id("buildlogic.java-application-conventions")
     id("org.jetbrains.kotlin.jvm") version "1.4.31"
     id("net.nemerosa.versioning") version "3.1.0"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 dependencies {
@@ -120,6 +121,7 @@ tasks {
      compileTestKotlin {
      }
 
+
      withType<Test> {
          systemProperties["jna.library.path"] = "${projectDir}/libs"
      }
@@ -128,18 +130,20 @@ tasks {
          options.encoding = "UTF-8"
      }
 
-     withType<ShadowJar> {
-          mergeServiceFiles()
-          manifest {
-              attributes(mapOf("Main-Class" to mClass))
-          }
-          // because there's some conflict (LICENSE already exists) during the unzipping process
-          // by excluding it from the shadow jar we try to fix problem on Oracle JVM 8
-          exclude("LICENSE")
-          // standard Dropwizard excludes
-          exclude("META-INF/*.DSA", "META-INF/*.RSA", "META-INF/*.SF")
-          duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-          archiveFileName.set("backup-export.jar")
+    // withType<ShadowJar> {
+    shadowJar {
+        // enableRelocation = true
+        mergeServiceFiles()
+        manifest {
+            attributes(mapOf("Main-Class" to mClass))
+        }
+        // because there's some conflict (LICENSE already exists) during the unzipping process
+        // by excluding it from the shadow jar we try to fix problem on Oracle JVM 8
+        exclude("LICENSE")
+        // standard Dropwizard excludes
+        exclude("META-INF/*.DSA", "META-INF/*.RSA", "META-INF/*.SF")
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+        archiveFileName.set("backup-export.jar")
      }
 
      test {
