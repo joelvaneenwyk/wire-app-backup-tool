@@ -3,7 +3,7 @@ set -e
 
 # version which should be used for export
 EXPORT_TOOL_VERSION=2.0.0
-DOCKER_IMAGE="quay.io/wire/backup-export-tool:${EXPORT_TOOL_VERSION}"
+DOCKER_IMAGE="quay.io/joelvaneenwyk/wire-app-backup-tool:${EXPORT_TOOL_VERSION}"
 
 # ----- mandatory variables -----
 # encrypted client export

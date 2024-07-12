@@ -61,7 +61,7 @@ jobs:
         id: docker_meta
         uses: crazy-max/ghaction-docker-meta@v5
         with:
-          images: quay.io/wire/backup-export-tool
+          images: quay.io/joelvaneenwyk/wire-app-backup-tool
 
         # setup docker actions https://github.com/docker/build-push-action
       - name: Set up QEMU

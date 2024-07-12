@@ -305,3 +305,6 @@ tmp/
 
 # Ignore Gradle build output directory
 build/
+
+# Ignore Wire backup files
+*.*_wbu
