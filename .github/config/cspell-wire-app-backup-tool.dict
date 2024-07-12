@@ -1,4 +1,5 @@
 # Custom Dictionary Words
+adoptopenjdk
 apdisk
 bruceadams
 buildx
@@ -10,7 +11,9 @@ ctxt
 databind
 dbnavigator
 Dejan
+Djava
 donotpresent
+Dskip
 ehthumbs
 encryptable
 esktop
@@ -37,6 +40,7 @@ Kovacevic
 ktlint
 lazycode
 lazysodium
+libsodium
 Lukas
 mpeltonen
 msix
@@ -58,3 +62,4 @@ TASKFILE
 temurin
 timemachine
 tyrus
+wirebot

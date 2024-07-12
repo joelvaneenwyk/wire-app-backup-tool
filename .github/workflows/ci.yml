@@ -1,19 +1,19 @@
-name: CI test pipelines
+name: Build
 
 on:
   push:
-    branches: [main, develop, master]
+    branches: [main, develop]
   pull_request:
-    branches: [main, develop, master]
+    branches: [main, develop]
 
 jobs:
   test:
-    runs-on: '${{ matrix.os }}-latest'
+    runs-on: "${{ matrix.os }}-latest"
     name: Java ${{ matrix.java }} on ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ windows, ubuntu ]
-        java: [ 11 ]
+        os: [ubuntu]
+        java: [11]
 
     steps:
       - uses: actions/checkout@v4
@@ -25,7 +25,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           # Running setup-java again overwrites the settings.xml
-          distribution: 'temurin'
+          distribution: "temurin"
           java-version: ${{ matrix.java }}
 
       - name: Setup Gradle
@@ -97,7 +97,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           # Running setup-java again overwrites the settings.xml
-          distribution: 'temurin'
+          distribution: "temurin"
           java-version: 11
 
       - name: Setup Gradle
