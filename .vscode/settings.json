@@ -1,4 +1,9 @@
 {
+  "[gradle-kotlin-dsl][java][kotlin]": {
+    "editor.defaultFormatter": "redhat.java",
+    "editor.formatOnSaveMode": "modificationsIfAvailable",
+    "editor.formatOnSave": true
+  },
     "java.dependency.packagePresentation": "hierarchical",
     "java.configuration.updateBuildConfiguration": "automatic",
     "cSpell.words": [
