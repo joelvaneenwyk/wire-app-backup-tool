@@ -5,8 +5,6 @@ LABEL project="wire-bots:exports"
 ENV PROJECT_ROOT=/source
 WORKDIR $PROJECT_ROOT
 
-ENV PROJECT_APP_SOURCE_DIR=$PROJECT_ROOT/app
-
 # Copy gradle settings
 COPY \
     settings.gradle.kts gradle.properties gradlew \
@@ -32,6 +30,7 @@ FROM adoptopenjdk/openjdk11:alpine-jre
 RUN apk add bash
 
 ENV APP_ROOT=/app
+ENV PROJECT_APP_SOURCE_DIR=$PROJECT_ROOT/app
 WORKDIR $APP_ROOT
 
 # Obtain built from the base
