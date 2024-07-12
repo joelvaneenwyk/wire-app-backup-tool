@@ -2,7 +2,7 @@ FROM adoptopenjdk/openjdk11:alpine AS build
 LABEL description="Wire Export Backup Tool"
 LABEL project="wire-bots:exports"
 
-ENV PROJECT_ROOT /src
+ENV PROJECT_ROOT=/src
 WORKDIR $PROJECT_ROOT
 
 # Copy gradle settings
