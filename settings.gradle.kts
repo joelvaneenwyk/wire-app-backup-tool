@@ -5,6 +5,8 @@
  * For more detailed information on multi-project builds, please refer to https://docs.gradle.org/8.8/userguide/multi_project_builds.html in the Gradle documentation.
  */
 
+rootProject.name = "wire-app-backup-tool"
+
 pluginManagement {
     // Include 'plugins build' to define convention plugins.
     includeBuild("build-logic")
@@ -15,5 +17,4 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
 }
 
-rootProject.name = "wire-app-backup-tool"
 include("libs", "app")
