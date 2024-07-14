@@ -9,5 +9,11 @@
 
 /codeStyles/
 /inspectionProfiles/
+/libraries/
+/modules/
+
+/modules.xml
 /scala_compiler.xml
 /deployment.xml
+
+*.iml
