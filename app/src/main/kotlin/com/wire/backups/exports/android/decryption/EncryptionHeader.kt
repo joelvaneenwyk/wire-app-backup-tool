@@ -5,7 +5,7 @@ import java.nio.ByteBuffer
 
 private const val SALT_LENGTH = 16
 private const val NONCE_LENGTH = 24
-private val ANDROID_MAGIC_NUMBER = "WBUA".toCharArray().map { it.toByte() }.toByteArray()
+private val ANDROID_MAGIC_NUMBER = "WBUA".toCharArray().map { it.code.toByte() }.toByteArray()
 private const val ANDROID_MAGIC_NUMBER_LENGTH = 4
 private const val CURRENT_VERSION: Short = 1
 
