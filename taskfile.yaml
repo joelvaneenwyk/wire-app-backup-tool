@@ -11,6 +11,36 @@ tasks:
     cmds:
       - task: build
 
+  git-submodules:
+    status:
+      - test -f "{{ joinPath .TASKFILE_DIR "lib" "helium" ".gitignore" }}"
+      - test -f "{{ joinPath .TASKFILE_DIR "lib" "xenon" ".gitignore" }}"
+    cmds:
+      - git add .
+      - git submodule update --init --recursive
+
+  build:
+    deps: [git-submodules]
+    vars:
+      GRADLEW_FILENAME: '{{ if eq OS "windows" }}gradlew.bat{{ else }}gradlew{{ end }}'
+      RUN: '{{ if eq OS "windows" }}cmd /D /E:ON /C{{ else }}bash -c{{ end }}'
+    cmds:
+      - cmd: |
+          {{.RUN}} call "{{ joinPath .TASKFILE_DIR .GRADLEW_FILENAME }}" build
+
+  create-shadow-jar:
+    deps: [build]
+    cmds:
+      - cmd: ./gradlew shadowJar
+
+  docker-build:
+    cmds:
+      - cmd: docker build -t joelvaneenwyk/wire-app-backup-tool .
+
+  docker-push:
+    cmds:
+      - cmd: docker push joelvaneenwyk/wire-app-backup-tool
+
   extract:
     cmds:
       - cmd: >-
@@ -45,23 +75,6 @@ tasks:
       PROXY_URL:
       PROXY_PORT:
       NON_PROXY_HOSTS:
-
-  git-submodules:
-    status:
-      - test -f "{{ joinPath .TASKFILE_DIR "lib" "helium" ".gitignore" }}"
-      - test -f "{{ joinPath .TASKFILE_DIR "lib" "xenon" ".gitignore" }}"
-    cmds:
-      - git add .
-      - git submodule update --init --recursive
-
-  build:
-    deps: [git-submodules]
-    vars:
-      GRADLEW_FILENAME: '{{ if eq OS "windows" }}gradlew.bat{{ else }}gradlew{{ end }}'
-      RUN: '{{ if eq OS "windows" }}cmd /D /E:ON /C{{ else }}bash -c{{ end }}'
-    cmds:
-      - cmd: |
-          {{.RUN}} call "{{ joinPath .TASKFILE_DIR .GRADLEW_FILENAME }}" build
 
   docker-get:
     cmds:
