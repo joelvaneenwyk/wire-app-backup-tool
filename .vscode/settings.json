@@ -4,9 +4,8 @@
     "editor.formatOnSaveMode": "modificationsIfAvailable",
     "editor.formatOnSave": true
   },
-    "java.dependency.packagePresentation": "hierarchical",
-    "java.configuration.updateBuildConfiguration": "automatic",
-    "cSpell.words": [
-        "gradlew"
-    ]
+  "java.dependency.packagePresentation": "hierarchical",
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "cSpell.words": ["gradlew"],
+  "java.compile.nullAnalysis.mode": "automatic"
 }
