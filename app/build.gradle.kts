@@ -10,24 +10,15 @@ plugins {
 }
 
 dependencies {
-    api(libs.jakarta.ws.rs.jakarta.ws.rs.api)
-    api(libs.glassfish.tyrus.bundles.tyrus.standalone.client)
-    api(libs.glassfish.jersey.core.jersey.client)
-    api(libs.flywaydb.flyway.core)
-    api(libs.glassfish.jersey.inject.jersey.hk2)
-    api(libs.fasterxml.jackson.jaxrs.jackson.jaxrs.json.provider)
-
-    api(libs.katlib)
-
     implementation("org.apache.commons:commons-text")
 
-    implementation(libs.wire.xenon)
-    implementation(libs.wire.helium)
-
-    implementation(libs.konan)
-    implementation(libs.kotlin)
-
-    implementation(libs.github.johnrengelman.shadow)
+    api(libs.fasterxml.jackson.jaxrs.jackson.jaxrs.json.provider)
+    api(libs.flywaydb.flyway.core)
+    api(libs.glassfish.jersey.core.jersey.client)
+    api(libs.glassfish.jersey.inject.jersey.hk2)
+    api(libs.glassfish.tyrus.bundles.tyrus.standalone.client)
+    api(libs.jakarta.ws.rs.jakarta.ws.rs.api)
+    api(libs.katlib)
 
     // command line arguments parsing
     implementation(libs.picocli)
@@ -39,36 +30,32 @@ dependencies {
     implementation(libs.openhtmltopdf.core)
     implementation(libs.openhtmltopdf.pdfbox)
     implementation(libs.openhtmltopdf.svg.support)
-    implementation(libs.spullara.mustache.java.compiler)
 
-    // ------- Common dependencies -------
-    implementation(libs.lingala.zip4j)
-    implementation(libs.lazycode.lazysodium.java) {
-       // otherwise the application won't start, the problem is combination of Dropwizard and sl4j 2.0
-       exclude("org.slf4j", "slf4j-api")
-    }
-    implementation(libs.microutils.kotlin.logging)
+    implementation(libs.wire.xenon)
+    implementation(libs.wire.helium)
 
-    // ------- Kotlin dependencies -------
-    implementation(libs.pw.forst.tools.katlib)
+    implementation(libs.konan)
+    implementation(libs.kotlin)
+
+    implementation(libs.fasterxml.jackson.kotlin)
+    implementation(libs.github.johnrengelman.shadow)
     implementation(libs.java.dev.jna)
+    implementation(libs.jetbrains.kotlin.reflect)
+    implementation(libs.lazycode.lazysodium.java)
+    implementation(libs.lingala.zip4j)
+    implementation(libs.microutils.kotlin.logging)
+    implementation(libs.pw.forst.tools.katlib)
+    implementation(libs.spullara.mustache.java.compiler)
+    implementation(libs.xerial.sqlite.jdbc)
 
     implementation(libs.jetbrains.exposed.core)
     implementation(libs.jetbrains.exposed.dao)
     implementation(libs.jetbrains.exposed.jdbc)
     implementation(libs.jetbrains.exposed.java)
-    implementation(libs.xerial.sqlite.jdbc)
-
-    // jackson for kotlin
-    implementation(libs.fasterxml.jackson.kotlin)
-
-    // correct reflect lib until jackson fixes theirs
-    implementation(libs.jetbrains.kotlin.reflect)
 
     testImplementation(libs.test)
     testImplementation(libs.test.junit5)
     testImplementation(libs.script.runtime)
-
     testImplementation(libs.junit.jupiter.engine)
 
     testRuntimeOnly(libs.junit.platform.launcher)
