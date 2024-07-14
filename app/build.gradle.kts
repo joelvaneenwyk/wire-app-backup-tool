@@ -14,6 +14,9 @@ plugins {
 dependencies {
     implementation("org.apache.commons:commons-text")
 
+    implementation(libs.wire.xenon)
+    implementation(libs.wire.helium)
+
     implementation(libs.pluginz.konan)
     implementation(libs.pluginz.kotlin)
 
@@ -26,12 +29,7 @@ dependencies {
 
     testImplementation(libs.junit.jupiter.engine)
 
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-    implementation("org.apache.commons:commons-text")
-
-    implementation(libs.wire.xenon)
-    implementation(libs.wire.helium)
+    testRuntimeOnly(libs.junit.platform.launcher)
 
     // ------- Java dependencies -------
 
@@ -91,9 +89,9 @@ dependencies {
 }
 
 group = "com.wire.backups"
-val mClass = "com.wire.backups.exports.Service"
-
 version = (versioning.info.tag ?: versioning.info.lastTag) + if (versioning.info.dirty) "-dirty" else ""
+
+private val mClass: String = "com.wire.backups.exports.Service"
 
 application {
     // Define the main class for the application.

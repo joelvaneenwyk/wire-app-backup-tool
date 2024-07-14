@@ -7,13 +7,8 @@
 wire-xenon = "1.4.6"
 wire-helium = "1.3.1"
 
-android = "4.1.1.4"
 junit = "4.13.2"
-
 kotlin = "1.9.24"
-kotlinpoet = "1.18.0"
-ktlint = "0.48.2"
-
 grpc = "1.65.0"
 
 protobuf = "3.24.3"
@@ -36,16 +31,11 @@ kotlin-gradle-plugin = "1.9.22"
 jetbrains-konan-gradle-plugin = "1.3.41"
 johnrengelman-shadow = "8.1.1"
 
-# https://mvnrepository.com/artifact/org.jetbrains.kotlin.konan/org.jetbrains.kotlin.konan.gradle.plugin
-# implementation("org.jetbrains.kotlin.konan:org.jetbrains.kotlin.konan.gradle.plugin:1.3.41")
-
 jetbrains-kotlin-test = "2.0.0"
 
 nemerosa-versioning = "3.1.0"
 
-# Helium
 com-fasterxml-jackson-jaxrs-jackson-jaxrs-json-provider = "2.14.2"
-com-wire-xenon = "1.5.1"
 jakarta-ws-rs-jakarta-ws-rs-api = "2.1.6"
 javax-activation-activation = "1.1.1"
 org-flywaydb-flyway-core = "8.5.12"
@@ -58,15 +48,17 @@ org-postgresql-postgresql = "42.3.8"
 org-slf4j-slf4j-api = "1.7.36"
 org-slf4j-slf4j-log4j12 = "1.7.36"
 
+junit-platform-launcher = "1.10.3"
+
 [libraries]
 
 wire-xenon = { module = "com.wire:xenon", version.ref = "wire-xenon" }
 wire-helium = { module = "com.wire:helium", version.ref = "wire-helium" }
 
 junit = { module = "junit:junit", version.ref = "junit" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform-launcher" }
 
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-gradle-plugin" }
-
 pluginz-konan = { module = "org.jetbrains.kotlin.konan:org.jetbrains.kotlin.konan.gradle.plugin", version.ref = "jetbrains-konan-gradle-plugin" }
 github-johnrengelman-shadow = { module = "com.github.johnrengelman:shadow", version.ref = "johnrengelman-shadow" }
 
@@ -80,7 +72,6 @@ pluginz-script-runtime = { module = "org.jetbrains.kotlin:kotlin-script-runtime"
 # Check https://docs.gradle.org/current/userguide/platforms.html#sec:version-catalog-plugin
 #  if we ever wanna migrate to this.
 pluginz-android = { module = "com.android.tools.build:gradle", version = "8.5.0" }
-
 pluginz-binaryCompatibilityValidator = { module = "org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin", version = "0.15.1" }
 pluginz-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 
@@ -109,7 +100,7 @@ junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", vers
 slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j-simple" }
 
 katlib = { module = "pw.forst.tools:katlib", version = "1.2.1" }
-lazysodium-java = { module = "com.goterl.lazycode:lazysodium-java", version = "4.3.4" }
+com-goterl-lazycode-lazysodium-java = { module = "com.goterl.lazycode:lazysodium-java", version = "4.3.4" }
 exposed-core = { module = "org.jetbrains.exposed:exposed-core", version = "0.30.1" }
 exposed-dao = { module = "org.jetbrains.exposed:exposed-dao", version = "0.30.1" }
 exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version = "0.30.1" }
@@ -117,7 +108,6 @@ exposed-java-time = { module = "org.jetbrains.exposed:exposed-java-time", versio
 
 # Helium
 com-fasterxml-jackson-jaxrs-jackson-jaxrs-json-provider = { module = "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider", version.ref = "com-fasterxml-jackson-jaxrs-jackson-jaxrs-json-provider" }
-com-wire-xenon = { module = "com.wire:xenon", version.ref = "com-wire-xenon" }
 jakarta-ws-rs-jakarta-ws-rs-api = { module = "jakarta.ws.rs:jakarta.ws.rs-api", version.ref = "jakarta-ws-rs-jakarta-ws-rs-api" }
 javax-activation-activation = { module = "javax.activation:activation", version.ref = "javax-activation-activation" }
 org-flywaydb-flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "org-flywaydb-flyway-core" }
