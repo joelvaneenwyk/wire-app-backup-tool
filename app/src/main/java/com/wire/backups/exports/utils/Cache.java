@@ -7,7 +7,7 @@ import com.wire.helium.models.Access;
 import com.wire.xenon.WireClient;
 import com.wire.xenon.backend.models.User;
 import com.wire.xenon.exceptions.HttpException;
-import com.wire.xenon.models.MessageAssetBase;
+//import com.wire.xenon.models.MessageResourceBase;
 import com.wire.xenon.tools.Logger;
 
 import javax.ws.rs.client.Client;
@@ -49,17 +49,18 @@ public class Cache {
         profiles.remove(userId);
     }
 
-    File getAssetFile(MessageAssetBase message) {
-        return assetsMap.computeIfAbsent(message.getAssetKey(), k -> {
-            try {
-                byte[] image = downloadAsset(message);
-                return helper.saveAsset(image, message);
-            } catch (Exception e) {
-                Logger.error("Cache.getAssetFile: %s", e);
-                return helper.assetFile(message.getAssetKey(), message.getMimeType());
-            }
-        });
-    }
+    // @joelvaneenwyk #todo - Re-implement these
+    //File getAssetFile(MessageResourceBase message) {
+    //    return assetsMap.computeIfAbsent(message.getAssetKey(), k -> {
+    //        try {
+    //            byte[] image = downloadAsset(message);
+    //            return helper.saveAsset(image, message);
+    //        } catch (Exception e) {
+    //            Logger.error("Cache.getAssetFile: %s", e);
+    //            return helper.assetFile(message.getAssetKey(), message.getMimeType());
+    //        }
+    //    });
+    //}
 
     File getProfileImage(String key) {
         return assetsMap.computeIfAbsent(key, k -> {
@@ -73,12 +74,13 @@ public class Cache {
         });
     }
 
-    protected byte[] downloadAsset(MessageAssetBase message) throws Exception {
-        return wireClient.downloadAsset(message.getAssetKey(),
-                message.getAssetToken(),
-                message.getSha256(),
-                message.getOtrKey());
-    }
+    // @joelvaneenwyk #todo - Re-implement these
+    //protected byte[] downloadAsset(MessageResourceBase message) throws Exception {
+    //    return wireClient.downloadAsset(message.getAssetKey(),
+    //            message.getAssetToken(),
+    //            message.getSha256(),
+    //            message.getOtrKey());
+    //}
 
     protected User getUserInternal(UUID userId) throws HttpException {
         return wireClient.getUser(userId);

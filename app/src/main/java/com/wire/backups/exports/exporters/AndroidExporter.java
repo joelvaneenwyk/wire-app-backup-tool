@@ -78,12 +78,13 @@ public class AndroidExporter extends ExporterBase {
 
     private void processLikings(Collection<LikingsDto> likings, InstantCache cache) {
         likings.forEach(liking -> {
-            final Collector collector = getCollector(liking.getConversationId(), cache);
-            final ReactionMessage like = new ReactionMessage(UUID.randomUUID(), liking.getConversationId(), null, liking.getUserId());
-            like.setReactionMessageId(liking.getMessageId());
-            like.setEmoji("❤️"); // no other emojis allowed so far
-            like.setTime(liking.getTime());
-            delayedCollector(liking.getTime(), () -> collector.add(like));
+            // @joelvaneenwyk #todo - Re-implement these
+            //final Collector collector = getCollector(liking.getConversationId(), cache);
+            //final ReactionMessage like = new ReactionMessage(UUID.randomUUID(), liking.getConversationId(), null, liking.getUserId());
+            //like.setReactionMessageId(liking.getMessageId());
+            //like.setEmoji("❤️"); // no other emojis allowed so far
+            //like.setTime(liking.getTime());
+            //delayedCollector(liking.getTime(), () -> collector.add(like));
         });
     }
 
@@ -109,32 +110,31 @@ public class AndroidExporter extends ExporterBase {
             // not possible to obtain otr
             return;
         }
-        final MessageAssetBase msg = attachmentDto.getMimeType().startsWith("image")
-                ? new ImageMessage(attachmentDto.getId(), attachmentDto.getConversationId(), null, attachmentDto.getSender())
-                : new AttachmentMessage(attachmentDto.getId(), attachmentDto.getConversationId(), null, attachmentDto.getSender());
-
-        msg.setTime(attachmentDto.getTimestamp());
-        msg.setSize(attachmentDto.getContentLength());
-        msg.setMimeType(attachmentDto.getMimeType());
-        msg.setAssetToken(attachmentDto.getAssetToken());
-        msg.setAssetKey(attachmentDto.getAssetKey());
-        msg.setOtrKey(otr);
-        msg.setSha256(attachmentDto.getSha());
-        msg.setName(attachmentDto.getName());
-
-        delayedCollector(attachmentDto.getTimestamp(), () -> {
-            try {
-                System.out.printf("Processing attachment %s\n", msg.getName());
-                // visitor pattern would be better...
-                if (msg instanceof ImageMessage) {
-                    collector.add((ImageMessage) msg);
-                } else {
-                    collector.add((AttachmentMessage) msg);
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        });
+        // @joelvaneenwyk #todo - Re-implement these
+        //final MessageResourceBase msg = attachmentDto.getMimeType().startsWith("image")
+        //        ? new ImageMessage(attachmentDto.getId(), attachmentDto.getConversationId(), null, attachmentDto.getSender())
+        //        : new AttachmentMessage(attachmentDto.getId(), attachmentDto.getConversationId(), null, attachmentDto.getSender());
+        //msg.setTime(attachmentDto.getTimestamp());
+        //msg.setSize(attachmentDto.getContentLength());
+        //msg.setMimeType(attachmentDto.getMimeType());
+        //msg.setAssetToken(attachmentDto.getAssetToken());
+        //msg.setAssetKey(attachmentDto.getAssetKey());
+        //msg.setOtrKey(otr);
+        //msg.setSha256(attachmentDto.getSha());
+        //msg.setName(attachmentDto.getName());
+        //delayedCollector(attachmentDto.getTimestamp(), () -> {
+        //    try {
+        //        System.out.printf("Processing attachment %s\n", msg.getName());
+        //        // visitor pattern would be better...
+        //        if (msg instanceof ImageMessage) {
+        //            collector.add((ImageMessage) msg);
+        //        } else {
+        //            collector.add((AttachmentMessage) msg);
+        //        }
+        //    } catch (ParseException e) {
+        //        e.printStackTrace();
+        //    }
+        //});
 
     }
 
@@ -231,17 +231,21 @@ public class AndroidExporter extends ExporterBase {
             final TextMessage txt;
 
             if (!message.getEdited()) {
-                txt = new TextMessage(message.getId(), message.getConversationId(), null, message.getUserId());
+                txt = new EditedTextMessage(
+                    message.getId(), message.getId(), message.getConversationId(), null, message.getUserId(),
+                    message.getTime());
             } else {
-                final EditedTextMessage edited
-                        = new EditedTextMessage(message.getId(), message.getConversationId(), null, message.getUserId());
+                final EditedTextMessage edited = new EditedTextMessage(
+                    message.getId(), message.getId(), message.getConversationId(), null, message.getUserId(),
+                    message.getTime());
                 edited.setReplacingMessageId(message.getId());
                 txt = edited;
             }
 
-            txt.setTime(message.getTime());
-            txt.setText(message.getContent());
-            txt.setQuotedMessageId(message.getQuote());
+            // @joelvaneenwyk #todo - Re-implement these
+            //txt.setTime(message.getTime());
+            //txt.setText(message.getContent());
+            //txt.setQuotedMessageId(message.getQuote());
             final Collector collector = getCollector(message.getConversationId(), cache);
 
             delayedCollector(message.getTime(), () -> {

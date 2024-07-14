@@ -1,6 +1,6 @@
 package com.wire.backups.exports.utils;
 
-import com.wire.xenon.models.MessageAssetBase;
+//import com.wire.xenon.models.MessageResourceBase;
 import com.wire.xenon.tools.Logger;
 import org.commonmark.Extension;
 import org.commonmark.ext.autolink.AutolinkExtension;
@@ -71,10 +71,11 @@ public class Helper {
         return save(profile, file);
     }
 
-    File saveAsset(byte[] image, MessageAssetBase message) throws Exception {
-        File file = assetFile(message.getAssetKey(), message.getMimeType());
-        return save(image, file);
-    }
+    // @joelvaneenwyk #todo - Re-implement these
+    //File saveAsset(byte[] image, MessageResourceBase message) throws Exception {
+    //    File file = assetFile(message.getAssetKey(), message.getMimeType());
+    //    return save(image, file);
+    //}
 
     File assetFile(String assetKey, String mimeType) {
         String extension = mimeType != null ? getExtension(mimeType) : "";

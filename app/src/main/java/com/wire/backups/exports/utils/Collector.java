@@ -105,59 +105,62 @@ public class Collector {
         return add(event);
     }
 
-    public Sender add(ImageMessage event) throws ParseException {
-        Message message = new Message();
-        message.id = event.getMessageId();
-        message.timeStamp = event.getTime();
+    // @joelvaneenwyk #todo - Re-implement these
+    //public Sender add(ImageMessage event) throws ParseException {
+    //    Message message = new Message();
+    //    message.id = event.getMessageId();
+    //    message.timeStamp = event.getTime();
+//
+    //    File file = cache.getAssetFile(event);
+    //    message.image = getFilename(file);
+//
+    //    Sender sender = sender(event.getUserId());
+    //    sender.add(message);
+//
+    //    return append(sender, message, event.getTime());
+    //}
 
-        File file = cache.getAssetFile(event);
-        message.image = getFilename(file);
+    // @joelvaneenwyk #todo - Re-implement these
+    //public void add(VideoMessage event) throws ParseException {
+    //    Message message = new Message();
+    //    message.id = event.getMessageId();
+    //    message.timeStamp = event.getTime();
+//
+    //    File file = cache.getAssetFile(event);
+    //    message.video = new Video();
+    //    message.video.url = getFilename(file);
+    //    message.video.width = event.getWidth();
+    //    message.video.height = event.getHeight();
+    //    message.video.mimeType = event.getMimeType();
+//
+    //    Sender sender = sender(event.getUserId());
+    //    sender.add(message);
+//
+    //    append(sender, message, event.getTime());
+    //}
 
-        Sender sender = sender(event.getUserId());
-        sender.add(message);
-
-        return append(sender, message, event.getTime());
-    }
-
-    public void add(VideoMessage event) throws ParseException {
-        Message message = new Message();
-        message.id = event.getMessageId();
-        message.timeStamp = event.getTime();
-
-        File file = cache.getAssetFile(event);
-        message.video = new Video();
-        message.video.url = getFilename(file);
-        message.video.width = event.getWidth();
-        message.video.height = event.getHeight();
-        message.video.mimeType = event.getMimeType();
-
-        Sender sender = sender(event.getUserId());
-        sender.add(message);
-
-        append(sender, message, event.getTime());
-    }
-
-    public Sender add(AttachmentMessage event) throws ParseException {
-        Message message = new Message();
-        message.id = event.getMessageId();
-        message.timeStamp = event.getTime();
-
-        File file = cache.getAssetFile(event);
-
-        message.attachment = new Attachment();
-        message.attachment.name = String.format("%s (%s)", event.getName(), event.getAssetKey());
-        try {
-            message.attachment.url = "file://" + file.getCanonicalPath();
-        } catch (IOException e) {
-            e.printStackTrace();
-            message.attachment.url = "file://" + file.getAbsolutePath();
-        }
-
-        Sender sender = sender(event.getUserId());
-        sender.add(message);
-
-        return append(sender, message, event.getTime());
-    }
+    // @joelvaneenwyk #todo - Re-implement these
+    //public Sender add(AttachmentMessage event) throws ParseException {
+    //    Message message = new Message();
+    //    message.id = event.getMessageId();
+    //    message.timeStamp = event.getTime();
+//
+    //    File file = cache.getAssetFile(event);
+//
+    //    message.attachment = new Attachment();
+    //    message.attachment.name = String.format("%s (%s)", event.getName(), event.getAssetKey());
+    //    try {
+    //        message.attachment.url = "file://" + file.getCanonicalPath();
+    //    } catch (IOException e) {
+    //        e.printStackTrace();
+    //        message.attachment.url = "file://" + file.getAbsolutePath();
+    //    }
+//
+    //    Sender sender = sender(event.getUserId());
+    //    sender.add(message);
+//
+    //    return append(sender, message, event.getTime());
+    //}
 
     public void add(ReactionMessage event) {
         UUID userId = event.getUserId();
@@ -188,9 +191,10 @@ public class Collector {
         link.summary = event.getSummary();
         link.url = event.getUrl();
 
-        File file = cache.getAssetFile(event);
-        if (file.exists())
-            link.preview = getFilename(file);
+        // @joelvaneenwyk #todo - Re-implement these
+        //File file = cache.getAssetFile(event);
+        //if (file.exists())
+        //    link.preview = getFilename(file);
 
         message.link = link;
 

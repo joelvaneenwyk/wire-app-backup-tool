@@ -149,23 +149,25 @@ public class IosExporter extends ExporterBase {
                     if (!msg.getWasEdited()) {
                         collector.add((TextMessage) messageBase);
                     } else {
-                        final EditedTextMessage edited
-                                = new EditedTextMessage(messageBase.getMessageId(), messageBase.getConversationId(),
-                                messageBase.getClientId(), messageBase.getUserId());
-                        edited.setTime(messageBase.getTime());
-                        edited.setText(((TextMessage) messageBase).getText());
-                        collector.addEdit(edited);
+                        // @joelvaneenwyk #todo - Re-implement these
+                        //final EditedTextMessage edited
+                        //        = new EditedTextMessage(messageBase.getMessageId(), messageBase.getConversationId(),
+                        //        messageBase.getClientId(), messageBase.getUserId());
+                        //edited.setTime(messageBase.getTime());
+                        //edited.setText(((TextMessage) messageBase).getText());
+                        //collector.addEdit(edited);
                     }
                 }
-                if (messageBase instanceof ImageMessage) {
-                    collector.add((ImageMessage) messageBase);
-                }
-                if (messageBase instanceof VideoMessage) {
-                    collector.add((VideoMessage) messageBase);
-                }
-                if (messageBase instanceof AttachmentMessage) {
-                    collector.add((AttachmentMessage) messageBase);
-                }
+                // @joelvaneenwyk #todo - Re-implement these
+                //if (messageBase instanceof ImageMessage) {
+                //    collector.add((ImageMessage) messageBase);
+                //}
+                //if (messageBase instanceof VideoMessage) {
+                //    collector.add((VideoMessage) messageBase);
+                //}
+                //if (messageBase instanceof AttachmentMessage) {
+                //    collector.add((AttachmentMessage) messageBase);
+                //}
                 if (messageBase instanceof ReactionMessage) {
                     collector.add((ReactionMessage) messageBase);
                 }
@@ -184,11 +186,12 @@ public class IosExporter extends ExporterBase {
 
     private void fillReaction(Collector collector, IosMessageDto msg, MessageBase messageBase) {
         msg.getReactions().forEach(r -> {
-            ReactionMessage like = new ReactionMessage(UUID.randomUUID(), messageBase.getConversationId(), null, r.getUserId());
-            like.setReactionMessageId(messageBase.getMessageId());
-            like.setEmoji(r.getUnicodeValue());
-            like.setTime(messageBase.getTime());
-            timedMessagesExecutor.add(messageBase.getTime(), () -> collector.add(like));
+            // @joelvaneenwyk #todo - Re-implement these
+            //ReactionMessage like = new ReactionMessage(UUID.randomUUID(), messageBase.getConversationId(), null, r.getUserId());
+            //like.setReactionMessageId(messageBase.getMessageId());
+            //like.setEmoji(r.getUnicodeValue());
+            //like.setTime(messageBase.getTime());
+            //timedMessagesExecutor.add(messageBase.getTime(), () -> collector.add(like));
         });
     }
 

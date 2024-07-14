@@ -1,13 +1,14 @@
 package com.wire.backups.exports.utils;
 
 
+import com.waz.model.Messages;
 import com.wire.backups.exports.exporters.ExportConfiguration;
 import com.wire.helium.API;
 import com.wire.helium.LoginClient;
 import com.wire.helium.models.Access;
 import com.wire.xenon.backend.models.User;
 import com.wire.xenon.exceptions.HttpException;
-import com.wire.xenon.models.MessageAssetBase;
+//import com.wire.xenon.models.MessageResourceBase;
 import com.wire.xenon.tools.Logger;
 import com.wire.xenon.tools.Util;
 
@@ -59,27 +60,28 @@ public class InstantCache extends Cache {
         }
     }
 
-    @Override
-    protected byte[] downloadAsset(MessageAssetBase message) throws Exception {
-        byte[] cipher;
-        try {
-            cipher = api.downloadAsset(message.getAssetKey(), message.getAssetToken());
-        } catch (HttpException e) {
-            if (e.getCode() == 401) {
-                Access access = new LoginClient(httpClient)
-                        .login(configuration.getEmail(), configuration.getPassword());
-                this.api = new API(httpClient, null, access.getAccessToken());
-                cipher = api.downloadAsset(message.getAssetKey(), message.getAssetToken());
-            } else {
-                throw e;
-            }
-        }
-        byte[] sha256 = MessageDigest.getInstance("SHA-256").digest(cipher);
-        if (!Arrays.equals(sha256, message.getSha256()))
-            throw new Exception("Failed sha256 check");
-
-        return Util.decrypt(message.getOtrKey(), cipher);
-    }
+    // @joelvaneenwyk #todo - Re-implement these
+    //@Override
+    //protected byte[] downloadAsset(Messages.Asset message) throws Exception {
+    //    byte[] cipher;
+    //    try {
+    //        cipher = api.downloadAsset(message.getAssetKey(), message.getAssetToken());
+    //    } catch (HttpException e) {
+    //        if (e.getCode() == 401) {
+    //            Access access = new LoginClient(httpClient)
+    //                    .login(configuration.getEmail(), configuration.getPassword());
+    //            this.api = new API(httpClient, null, access.getAccessToken());
+    //            cipher = api.downloadAsset(message.getAssetKey(), message.getAssetToken());
+    //        } else {
+    //            throw e;
+    //        }
+    //    }
+    //    byte[] sha256 = MessageDigest.getInstance("SHA-256").digest(cipher);
+    //    if (!Arrays.equals(sha256, message.getSha256()))
+    //        throw new Exception("Failed sha256 check");
+//
+    //    return Util.decrypt(message.getOtrKey(), cipher);
+    //}
 
     @Override
     protected User getUserInternal(UUID userId) throws HttpException {

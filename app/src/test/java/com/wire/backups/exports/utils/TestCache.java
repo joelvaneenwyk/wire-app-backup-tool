@@ -3,7 +3,7 @@ package com.wire.backups.exports.utils;
 import com.wire.backups.exports.ConversationTemplateTest;
 import com.wire.xenon.backend.models.Asset;
 import com.wire.xenon.backend.models.User;
-import com.wire.xenon.models.MessageAssetBase;
+//import com.wire.xenon.models.MessageResourceBase;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -46,11 +46,12 @@ public class TestCache extends Cache {
         return new File(String.format("src/test/resources/recording/avatars/%s.png", key));
     }
 
-    @Override
-    File getAssetFile(MessageAssetBase message) {
-        String extension = Helper.getExtension(message.getMimeType());
-        return new File(String.format("src/test/resources/recording/images/%s.%s",
-                message.getAssetKey(),
-                extension));
-    }
+    // @joelvaneenwyk #todo - Re-implement these
+    //@Override
+    //File getAssetFile(MessageResourceBase message) {
+    //    String extension = Helper.getExtension(message.getMimeType());
+    //    return new File(String.format("src/test/resources/recording/images/%s.%s",
+    //            message.getAssetKey(),
+    //            extension));
+    //}
 }

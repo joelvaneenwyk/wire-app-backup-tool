@@ -19,6 +19,7 @@
 package com.wire.backups.exports.exporters;
 
 import com.waz.model.Messages;
+import com.wire.xenon.MessageResourceBase;
 import com.wire.xenon.models.*;
 import com.wire.xenon.tools.Logger;
 
@@ -48,8 +49,7 @@ public class GenericMessageConverter {
             Messages.Ephemeral ephemeral = generic.getEphemeral();
 
             if (ephemeral.hasText() && ephemeral.getText().hasContent()) {
-                EphemeralTextMessage msg = new EphemeralTextMessage(messageId, convId, clientId, from);
-                msg.setTime(time);
+                EphemeralTextMessage msg = new EphemeralTextMessage(messageId, messageId, convId, clientId, from, time, ephemeral.getExpireAfterMillis());
                 msg.setExpireAfterMillis(ephemeral.getExpireAfterMillis());
                 msg.setText(ephemeral.getText().getContent());
                 if (ephemeral.getText().hasQuote()) {
@@ -70,10 +70,10 @@ public class GenericMessageConverter {
         // Edit message
         if (generic.hasEdited() && generic.getEdited().hasText()) {
             Messages.MessageEdit edited = generic.getEdited();
-            EditedTextMessage msg = new EditedTextMessage(messageId, convId, clientId, from);
+            EditedTextMessage msg = new EditedTextMessage(messageId, messageId, convId, clientId, from, time);
             msg.setReplacingMessageId(UUID.fromString(edited.getReplacingMessageId()));
             msg.setText(edited.getText().getContent());
-            msg.setTime(time);
+            //msg.setTime(time);
             for (Messages.Mention mention : edited.getText().getMentionsList())
                 msg.addMention(mention.getUserId(), mention.getStart(), mention.getLength());
 
@@ -82,7 +82,7 @@ public class GenericMessageConverter {
 
         if (generic.hasConfirmation()) {
             Messages.Confirmation confirmation = generic.getConfirmation();
-            ConfirmationMessage msg = new ConfirmationMessage(messageId, convId, clientId, from);
+            ConfirmationMessage msg = new ConfirmationMessage(messageId, messageId, convId, clientId, from, time);
 
             return handleConfirmation(confirmation, msg, time);
         }
@@ -93,16 +93,16 @@ public class GenericMessageConverter {
             List<Messages.LinkPreview> linkPreviewList = text.getLinkPreviewList();
 
             if (!linkPreviewList.isEmpty()) {
-                LinkPreviewMessage msg = new LinkPreviewMessage(messageId, convId, clientId, from);
+                LinkPreviewMessage msg = new LinkPreviewMessage(messageId, messageId, convId, clientId, from, time);
                 String content = text.getContent();
 
                 return handleLinkPreview(linkPreviewList, content, msg, time);
             }
 
             if (text.hasContent()) {
-                TextMessage msg = new TextMessage(messageId, convId, clientId, from);
+                TextMessage msg = new TextMessage(messageId, messageId, convId, clientId, from, time);
                 msg.setText(text.getContent());
-                msg.setTime(time);
+                //msg.setTime(time);
                 if (text.hasQuote()) {
                     final String quotedMessageId = text.getQuote().getQuotedMessageId();
                     msg.setQuotedMessageId(UUID.fromString(quotedMessageId));
@@ -117,31 +117,31 @@ public class GenericMessageConverter {
         if (generic.hasCalling()) {
             Messages.Calling calling = generic.getCalling();
             if (calling.hasContent()) {
-                CallingMessage message = new CallingMessage(messageId, convId, clientId, from);
+                CallingMessage message = new CallingMessage(messageId, messageId, convId, clientId, from, time);
                 message.setContent(calling.getContent());
-                message.setTime(time);
+                //message.setTime(time);
                 return message;
             }
         }
 
         if (generic.hasDeleted()) {
-            DeletedTextMessage msg = new DeletedTextMessage(messageId, convId, clientId, from);
+            DeletedTextMessage msg = new DeletedTextMessage(messageId, messageId, convId, clientId, from, time);
             UUID delMsgId = UUID.fromString(generic.getDeleted().getMessageId());
             msg.setDeletedMessageId(delMsgId);
-            msg.setTime(time);
+            //msg.setTime(time);
 
             return msg;
         }
 
         if (generic.hasReaction()) {
             Messages.Reaction reaction = generic.getReaction();
-            ReactionMessage msg = new ReactionMessage(messageId, convId, clientId, from);
+            ReactionMessage msg = new ReactionMessage(messageId, messageId, convId, clientId, from, time);
             return handleReaction(reaction, msg, time);
         }
 
         if (generic.hasKnock()) {
-            PingMessage msg = new PingMessage(messageId, convId, clientId, from);
-            msg.setTime(time);
+            PingMessage msg = new PingMessage(messageId, messageId, convId, clientId, from, time);
+            //msg.setTime(time);
 
             return msg;
         }
@@ -159,8 +159,21 @@ public class GenericMessageConverter {
                     asset.hasPreview());
 
             if (asset.hasPreview()) {
-                ImageMessage msg = new ImageMessage(messageId, convId, clientId, from);
-                return handleVideoPreview(asset.getPreview(), msg, time);
+
+                if (generic.getAsset() != null && generic.getAsset().getOriginal() != null) {
+                    Messages.Asset.Original original = generic.getAsset().getOriginal();
+                    PhotoPreviewMessage msg = new PhotoPreviewMessage(
+                        messageId, messageId, convId, clientId, from, time,
+                        original.getMimeType(),
+                        original.getSize(),
+                        original.getName(),
+                        original.getImage().getWidth(),
+                        original.getImage().getHeight());
+                    return msg;
+                }
+                return new PhotoPreviewMessage(
+                    messageId, messageId, convId, clientId, from, time,
+                    "", 0, "", 0, 0);
             }
 
             if (asset.hasUploaded()) {
@@ -174,28 +187,28 @@ public class GenericMessageConverter {
             Messages.Asset.Original original = originals.get(messageId);
             Messages.Asset.RemoteData remoteData = remotes.get(messageId);
 
-            MessageAssetBase base = new MessageAssetBase(messageId, convId, clientId, from);
-            base.setTime(time);
-            base.fromOrigin(original);
-            base.fromRemote(remoteData);
-
-            if (base.getAssetKey() != null) {
-                if (original != null) {
-                    if (original.hasImage()) {
-                        return new ImageMessage(base, original.getImage());
-                    }
-                    if (original.hasAudio()) {
-                        return new AudioMessage(base, original.getAudio());
-                    }
-                    if (original.hasVideo()) {
-                        return new VideoMessage(base, original.getVideo());
-                    }
-                }
-
-                {
-                    return new AttachmentMessage(base);
-                }
-            }
+            //MessageResourceBase base = new MessageResourceBase(messageId, convId, clientId, from);
+            //base.setTime(time);
+            //base.fromOrigin(original);
+            //base.fromRemote(remoteData);
+//
+            //if (base.getAssetKey() != null) {
+            //    if (original != null) {
+            //        if (original.hasImage()) {
+            //            return new ImageMessage(base, original.getImage());
+            //        }
+            //        if (original.hasAudio()) {
+            //            return new AudioMessage(base, original.getAudio());
+            //        }
+            //        if (original.hasVideo()) {
+            //            return new VideoMessage(base, original.getVideo());
+            //        }
+            //    }
+//
+            //    {
+            //        return new AttachmentMessage(base);
+            //    }
+            //}
         }
 
         return null;
@@ -209,7 +222,7 @@ public class GenericMessageConverter {
         msg.setType(type.getNumber() == Messages.Confirmation.Type.DELIVERED_VALUE
                 ? ConfirmationMessage.Type.DELIVERED
                 : ConfirmationMessage.Type.READ);
-        msg.setTime(time);
+        //msg.setTime(time);
 
         return msg;
     }
@@ -218,12 +231,12 @@ public class GenericMessageConverter {
         for (Messages.LinkPreview link : linkPreviewList) {
             Messages.Asset image = link.getImage();
 
-            msg.fromOrigin(image.getOriginal());
-            msg.fromRemote(image.getUploaded());
+            //msg.fromOrigin(image.getOriginal());
+            //msg.fromRemote(image.getUploaded());
 
-            msg.setTime(time);
-            msg.setHeight(image.getOriginal().getImage().getHeight());
-            msg.setWidth(image.getOriginal().getImage().getWidth());
+            //msg.setTime(time);
+            //msg.setHeight(image.getOriginal().getImage().getHeight());
+            //msg.setWidth(image.getOriginal().getImage().getWidth());
 
             msg.setSummary(link.getSummary());
             msg.setTitle(link.getTitle());
@@ -240,23 +253,23 @@ public class GenericMessageConverter {
         if (reaction.hasEmoji()) {
             msg.setEmoji(reaction.getEmoji());
             msg.setReactionMessageId(UUID.fromString(reaction.getMessageId()));
-            msg.setTime(time);
+            //msg.setTime(time);
 
             return msg;
         }
         return null;
     }
 
-    private static MessageBase handleVideoPreview(Messages.Asset.Preview preview, ImageMessage msg, String time) {
+    private static MessageBase handleVideoPreview(Messages.Asset.Preview preview, PhotoPreviewMessage msg, String time) {
         if (preview.hasRemote()) {
-            msg.setTime(time);
-            msg.fromRemote(preview.getRemote());
+            ////msg.setTime(time);
+            //msg.fromRemote(preview.getRemote());
 
-            msg.setHeight(preview.getImage().getHeight());
-            msg.setWidth(preview.getImage().getWidth());
+            //msg.setHeight(preview.getImage().getHeight());
+            //msg.setWidth(preview.getImage().getWidth());
 
-            msg.setSize(preview.getSize());
-            msg.setMimeType(preview.getMimeType());
+            //msg.setSize(preview.getSize());
+            //msg.setMimeType(preview.getMimeType());
 
             return msg;
         }

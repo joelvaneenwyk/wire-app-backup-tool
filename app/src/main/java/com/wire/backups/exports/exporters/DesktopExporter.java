@@ -191,53 +191,58 @@ public class DesktopExporter extends ExporterBase {
         if (event.data.otrKey == null || event.data.sha256 == null)
             return;
         if (event.data.contentType.startsWith("image")) {
-            final ImageMessage img = new ImageMessage(event.id, event.conversation, null, event.from);
-            img.setTime(event.time);
-            img.setSize(event.data.contentLength);
-            img.setMimeType(event.data.contentType);
-            img.setAssetToken(event.data.token);
-            img.setAssetKey(event.data.key);
-            img.setOtrKey(toArray(event.data.otrKey));
-            img.setSha256(toArray(event.data.sha256));
-            collector.add(img);
+            // @joelvaneenwyk #todo - Re-implement these
+            //final ImageMessage img = new ImageMessage(event.id, event.conversation, null, event.from);
+            //img.setTime(event.time);
+            //img.setSize(event.data.contentLength);
+            //img.setMimeType(event.data.contentType);
+            //img.setAssetToken(event.data.token);
+            //img.setAssetKey(event.data.key);
+            //img.setOtrKey(toArray(event.data.otrKey));
+            //img.setSha256(toArray(event.data.sha256));
+            //collector.add(img);
         } else {
-            final AttachmentMessage att = new AttachmentMessage(event.id, event.conversation, null, event.from);
-            att.setTime(event.time);
-            att.setSize(event.data.contentLength);
-            att.setMimeType(event.data.contentType);
-            att.setAssetToken(event.data.token);
-            att.setAssetKey(event.data.key);
-            att.setOtrKey(toArray(event.data.otrKey));
-            att.setSha256(toArray(event.data.sha256));
-            att.setName(event.data.info.name);
-            collector.add(att);
+            // @joelvaneenwyk #todo - Re-implement these
+            //final AttachmentMessage att = new AttachmentMessage(event.id, event.conversation, null, event.from);
+            //att.setTime(event.time);
+            //att.setSize(event.data.contentLength);
+            //att.setMimeType(event.data.contentType);
+            //att.setAssetToken(event.data.token);
+            //att.setAssetKey(event.data.key);
+            //att.setOtrKey(toArray(event.data.otrKey));
+            //att.setSha256(toArray(event.data.sha256));
+            //att.setName(event.data.info.name);
+            //collector.add(att);
         }
     }
 
     private void onMessageAdd(Collector collector, Event event) throws ParseException {
         if (event.data.replacingMessageId != null) {
-            EditedTextMessage edit = new EditedTextMessage(event.id, event.conversation, null, event.from);
-            edit.setText(event.data.content);
-            edit.setTime(event.editedTime != null ? event.editedTime : event.time);
-            edit.setReplacingMessageId(event.data.replacingMessageId);
-            collector.addEdit(edit);
+            // @joelvaneenwyk #todo - Re-implement these
+            //EditedTextMessage edit = new EditedTextMessage(event.id, event.conversation, null, event.from);
+            //edit.setText(event.data.content);
+            //edit.setTime(event.editedTime != null ? event.editedTime : event.time);
+            //edit.setReplacingMessageId(event.data.replacingMessageId);
+            //collector.addEdit(edit);
         } else {
-            final TextMessage txt = new TextMessage(event.id, event.conversation, null, event.from);
-            txt.setTime(event.time);
-            txt.setText(event.data.content);
-            if (event.data.quote != null) {
-                txt.setQuotedMessageId(event.data.quote.messageId);
-            }
-            collector.add(txt);
+            // @joelvaneenwyk #todo - Re-implement these
+            //final TextMessage txt = new TextMessage(event.id, event.conversation, null, event.from);
+            //txt.setTime(event.time);
+            //txt.setText(event.data.content);
+            //if (event.data.quote != null) {
+            //    txt.setQuotedMessageId(event.data.quote.messageId);
+            //}
+            //collector.add(txt);
         }
 
         if (event.reactions != null) {
             for (UUID userId : event.reactions.keySet()) {
-                ReactionMessage like = new ReactionMessage(UUID.randomUUID(), event.conversation, null, userId);
-                like.setReactionMessageId(event.id);
-                like.setEmoji(event.reactions.get(userId));
-                like.setTime(event.time);
-                collector.add(like);
+                // @joelvaneenwyk #todo - Re-implement these
+                //ReactionMessage like = new ReactionMessage(UUID.randomUUID(), event.conversation, null, userId);
+                //like.setReactionMessageId(event.id);
+                //like.setEmoji(event.reactions.get(userId));
+                //like.setTime(event.time);
+                //collector.add(like);
             }
         }
     }
