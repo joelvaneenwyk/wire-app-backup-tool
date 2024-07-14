@@ -18,7 +18,6 @@ repositories {
 dependencies {
     implementation(libs.kotlin.gradle.plugin)
     implementation(libs.github.johnrengelman.shadow)
-    implementation(libs.nemerosa.versioning)
 
     implementation(libs.wire.xenon)
     implementation(libs.wire.helium)

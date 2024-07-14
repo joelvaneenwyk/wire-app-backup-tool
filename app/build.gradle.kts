@@ -5,8 +5,8 @@ import org.jetbrains.kotlin.konan.file.File
 
 plugins {
     id("buildlogic.java-application-conventions")
-    id("org.jetbrains.kotlin.jvm") version "1.4.31"
-    id("net.nemerosa.versioning") version "3.1.0"
+    alias(libs.plugins.jetbrains.kotlin.jvm)
+    alias(libs.plugins.nemerosa.versioning)
 }
 
 dependencies {
@@ -28,7 +28,6 @@ dependencies {
     implementation(libs.kotlin)
 
     implementation(libs.github.johnrengelman.shadow)
-    implementation(libs.nemerosa.versioning)
 
     // command line arguments parsing
     implementation(libs.picocli)

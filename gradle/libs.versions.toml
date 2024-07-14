@@ -92,8 +92,6 @@ kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", v
 konan = { module = "org.jetbrains.kotlin.konan:org.jetbrains.kotlin.konan.gradle.plugin", version.ref = "jetbrains-konan-gradle-plugin" }
 github-johnrengelman-shadow = { module = "com.github.johnrengelman:shadow", version.ref = "johnrengelman-shadow" }
 
-nemerosa-versioning = { module = "net.nemerosa.versioning:net.nemerosa.versioning.gradle.plugin", version.ref = "nemerosa-versioning" }
-
 test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "jetbrains-kotlin-test" }
 test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "jetbrains-kotlin-test" }
 script-runtime = { module = "org.jetbrains.kotlin:kotlin-script-runtime", version.ref = "jetbrains-kotlin-test" }
@@ -149,3 +147,8 @@ org-junit-jupiter-junit-jupiter-engine = { module = "org.junit.jupiter:junit-jup
 org-postgresql-postgresql = { module = "org.postgresql:postgresql", version.ref = "org-postgresql-postgresql" }
 org-slf4j-slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "org-slf4j-slf4j-api" }
 org-slf4j-slf4j-log4j12 = { module = "org.slf4j:slf4j-log4j12", version.ref = "org-slf4j-slf4j-log4j12" }
+
+[plugins]
+
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version = "1.5.32" }
+nemerosa-versioning = { id = "net.nemerosa.versioning", version.ref = "nemerosa-versioning" }
