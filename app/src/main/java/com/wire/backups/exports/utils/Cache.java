@@ -49,7 +49,7 @@ public class Cache {
         profiles.remove(userId);
     }
 
-    // @joelvaneenwyk #todo - Re-implement these
+    // TODO @joelvaneenwyk - Re-implement these
     //File getAssetFile(MessageResourceBase message) {
     //    return assetsMap.computeIfAbsent(message.getAssetKey(), k -> {
     //        try {
@@ -74,7 +74,7 @@ public class Cache {
         });
     }
 
-    // @joelvaneenwyk #todo - Re-implement these
+    // TODO @joelvaneenwyk - Re-implement these
     //protected byte[] downloadAsset(MessageResourceBase message) throws Exception {
     //    return wireClient.downloadAsset(message.getAssetKey(),
     //            message.getAssetToken(),

@@ -191,7 +191,7 @@ public class DesktopExporter extends ExporterBase {
         if (event.data.otrKey == null || event.data.sha256 == null)
             return;
         if (event.data.contentType.startsWith("image")) {
-            // @joelvaneenwyk #todo - Re-implement these
+            // TODO @joelvaneenwyk - Re-implement these
             //final ImageMessage img = new ImageMessage(event.id, event.conversation, null, event.from);
             //img.setTime(event.time);
             //img.setSize(event.data.contentLength);
@@ -202,7 +202,7 @@ public class DesktopExporter extends ExporterBase {
             //img.setSha256(toArray(event.data.sha256));
             //collector.add(img);
         } else {
-            // @joelvaneenwyk #todo - Re-implement these
+            // TODO @joelvaneenwyk - Re-implement these
             //final AttachmentMessage att = new AttachmentMessage(event.id, event.conversation, null, event.from);
             //att.setTime(event.time);
             //att.setSize(event.data.contentLength);
@@ -218,14 +218,14 @@ public class DesktopExporter extends ExporterBase {
 
     private void onMessageAdd(Collector collector, Event event) throws ParseException {
         if (event.data.replacingMessageId != null) {
-            // @joelvaneenwyk #todo - Re-implement these
+            // TODO @joelvaneenwyk - Re-implement these
             //EditedTextMessage edit = new EditedTextMessage(event.id, event.conversation, null, event.from);
             //edit.setText(event.data.content);
             //edit.setTime(event.editedTime != null ? event.editedTime : event.time);
             //edit.setReplacingMessageId(event.data.replacingMessageId);
             //collector.addEdit(edit);
         } else {
-            // @joelvaneenwyk #todo - Re-implement these
+            // TODO @joelvaneenwyk - Re-implement these
             //final TextMessage txt = new TextMessage(event.id, event.conversation, null, event.from);
             //txt.setTime(event.time);
             //txt.setText(event.data.content);
@@ -237,7 +237,7 @@ public class DesktopExporter extends ExporterBase {
 
         if (event.reactions != null) {
             for (UUID userId : event.reactions.keySet()) {
-                // @joelvaneenwyk #todo - Re-implement these
+                // TODO @joelvaneenwyk - Re-implement these
                 //ReactionMessage like = new ReactionMessage(UUID.randomUUID(), event.conversation, null, userId);
                 //like.setReactionMessageId(event.id);
                 //like.setEmoji(event.reactions.get(userId));

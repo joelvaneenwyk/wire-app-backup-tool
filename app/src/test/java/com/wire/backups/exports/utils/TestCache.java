@@ -46,7 +46,7 @@ public class TestCache extends Cache {
         return new File(String.format("src/test/resources/recording/avatars/%s.png", key));
     }
 
-    // @joelvaneenwyk #todo - Re-implement these
+    // TODO @joelvaneenwyk - Re-implement these
     //@Override
     //File getAssetFile(MessageResourceBase message) {
     //    String extension = Helper.getExtension(message.getMimeType());

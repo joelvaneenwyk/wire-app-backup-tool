@@ -78,7 +78,7 @@ public class AndroidExporter extends ExporterBase {
 
     private void processLikings(Collection<LikingsDto> likings, InstantCache cache) {
         likings.forEach(liking -> {
-            // @joelvaneenwyk #todo - Re-implement these
+            // TODO @joelvaneenwyk - Re-implement these
             //final Collector collector = getCollector(liking.getConversationId(), cache);
             //final ReactionMessage like = new ReactionMessage(UUID.randomUUID(), liking.getConversationId(), null, liking.getUserId());
             //like.setReactionMessageId(liking.getMessageId());
@@ -110,7 +110,7 @@ public class AndroidExporter extends ExporterBase {
             // not possible to obtain otr
             return;
         }
-        // @joelvaneenwyk #todo - Re-implement these
+        // TODO @joelvaneenwyk - Re-implement these
         //final MessageResourceBase msg = attachmentDto.getMimeType().startsWith("image")
         //        ? new ImageMessage(attachmentDto.getId(), attachmentDto.getConversationId(), null, attachmentDto.getSender())
         //        : new AttachmentMessage(attachmentDto.getId(), attachmentDto.getConversationId(), null, attachmentDto.getSender());
@@ -242,7 +242,7 @@ public class AndroidExporter extends ExporterBase {
                 txt = edited;
             }
 
-            // @joelvaneenwyk #todo - Re-implement these
+            // TODO @joelvaneenwyk - Re-implement these
             //txt.setTime(message.getTime());
             //txt.setText(message.getContent());
             //txt.setQuotedMessageId(message.getQuote());

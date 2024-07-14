@@ -105,7 +105,7 @@ public class Collector {
         return add(event);
     }
 
-    // @joelvaneenwyk #todo - Re-implement these
+    // TODO @joelvaneenwyk - Re-implement these
     //public Sender add(ImageMessage event) throws ParseException {
     //    Message message = new Message();
     //    message.id = event.getMessageId();
@@ -120,7 +120,7 @@ public class Collector {
     //    return append(sender, message, event.getTime());
     //}
 
-    // @joelvaneenwyk #todo - Re-implement these
+// TODO @joelvaneenwyk - Re-implement these
     //public void add(VideoMessage event) throws ParseException {
     //    Message message = new Message();
     //    message.id = event.getMessageId();
@@ -139,7 +139,7 @@ public class Collector {
     //    append(sender, message, event.getTime());
     //}
 
-    // @joelvaneenwyk #todo - Re-implement these
+// TODO @joelvaneenwyk - Re-implement these
     //public Sender add(AttachmentMessage event) throws ParseException {
     //    Message message = new Message();
     //    message.id = event.getMessageId();
@@ -191,7 +191,7 @@ public class Collector {
         link.summary = event.getSummary();
         link.url = event.getUrl();
 
-        // @joelvaneenwyk #todo - Re-implement these
+        // TODO @joelvaneenwyk - Re-implement these
         //File file = cache.getAssetFile(event);
         //if (file.exists())
         //    link.preview = getFilename(file);

@@ -46,7 +46,7 @@ public class ConversationTemplateTest {
         return ret;
     }
 
-    // @joelvaneenwyk #todo - Re-implement these
+    // TODO @joelvaneenwyk - Re-implement these
     //private static ImageMessage img(UUID userId, String time, String key, String mimeType) {
     //    ImageMessage ret = new ImageMessage(UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID(), "", userId, time);
     //    ret.setAssetKey(key);
@@ -55,7 +55,7 @@ public class ConversationTemplateTest {
     //    return ret;
     //}
 
-    // @joelvaneenwyk #todo - Re-implement these
+    // TODO @joelvaneenwyk - Re-implement these
     //private static VideoMessage vid(UUID userId, String time, String key, String mimeType) {
     //    VideoMessage ret = new VideoMessage(UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID(), "", userId, time);
     //    ret.setAssetKey(key);
@@ -66,7 +66,7 @@ public class ConversationTemplateTest {
     //    return ret;
     //}
 
-    // @joelvaneenwyk #todo - Re-implement these
+    // TODO @joelvaneenwyk - Re-implement these
     //private static AttachmentMessage attachment(UUID userId, String time, String key, String name, String mimeType) {
     //    AttachmentMessage ret = new AttachmentMessage(UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID(), "", userId, time);
     //    ret.setAssetKey(key);
@@ -82,7 +82,7 @@ public class ConversationTemplateTest {
         ret.setTitle(title);
         ret.setText(text);
         ret.setUrl(url);
-        // @joelvaneenwyk #todo - Re-implement these
+        // TODO @joelvaneenwyk - Re-implement these
         //ret.setAssetKey(preview);
         ret.setMimeType("image/png");
         return ret;
@@ -139,7 +139,7 @@ public class ConversationTemplateTest {
         collector.addSystem("**Dejo** deleted something", friday2, "conversation.otr-message-add.delete-text", UUID.randomUUID());
         collector.add(txt(lipis, saturday, "8"));
         collector.add(quote(dejan, "This was a quote", saturday, seven.getMessageId()));
-        // @joelvaneenwyk #todo - Re-implement these
+        // TODO @joelvaneenwyk - Re-implement these
         //collector.add(img(lipis, saturday, "ognjiste2", "image/png"));
         //collector.add(img(lipis, saturday, "small", "image/png"));
         collector.add(txt(dejan, saturday, "9"));
@@ -147,7 +147,7 @@ public class ConversationTemplateTest {
         collector.add(txt(lipis, saturday, "```This is some cool Java code here```"));
         collector.add(txt(dejan, saturday, "12"));
         collector.add(txt(lipis, saturday, "13"));
-        // @joelvaneenwyk #todo - Re-implement these
+        // TODO @joelvaneenwyk - Re-implement these
         //collector.add(img(dejan, saturday, "ognjiste", "image/png"));
         //collector.add(attachment(lipis, saturday, "Wire+Security+Whitepaper", "Wire Security Paper.pdf", "pdf"));
         collector.add(txt(lipis, saturday, "15"));
@@ -176,7 +176,7 @@ public class ConversationTemplateTest {
         collector.addSystem("**Dejo** removed **Lipis**", saturday2, "conversation.member-leave", UUID.randomUUID());
         collector.add(txt(dejan, saturday, "https://www.youtube.com/watch?v=rlR4PJn8b8I"));
 
-        // @joelvaneenwyk #todo - Re-implement these
+        // TODO @joelvaneenwyk - Re-implement these
         //collector.add(vid(dejan, saturday, "panormos", "video/mp4"));
 
         Collector.Conversation conversation = collector.getConversation();
