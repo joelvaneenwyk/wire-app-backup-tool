@@ -50,7 +50,37 @@ org-slf4j-slf4j-log4j12 = "1.7.36"
 
 junit-platform-launcher = "1.10.3"
 
+picocli = "4.6.1"
+atlassian = "0.17.1"
+html-to-pdf = "1.0.6"
+exposed = "0.30.1"
+
 [libraries]
+
+picocli = { module = "info.picocli:picocli", version.ref = "picocli" }
+
+commonmark = { module = "org.commonmark:commonmark", version.ref = "atlassian" }
+commonmark-ext-autolink = { module = "org.commonmark:commonmark-ext-autolink", version.ref = "atlassian" }
+
+openhtmltopdf-core = { module = "com.openhtmltopdf:openhtmltopdf-core", version.ref = "html-to-pdf" }
+openhtmltopdf-pdfbox = { module = "com.openhtmltopdf:openhtmltopdf-pdfbox", version.ref = "html-to-pdf" }
+openhtmltopdf-svg-support = { module = "com.openhtmltopdf:openhtmltopdf-svg-support", version.ref = "html-to-pdf" }
+spullara-mustache-java-compiler = { module = "com.github.spullara.mustache.java:compiler", version ="0.9.7" }
+
+lingala-zip4j = { module = "net.lingala.zip4j:zip4j", version = "2.6.1" }
+lazycode-lazysodium-java = { module = "com.goterl.lazycode:lazysodium-java", version = "4.3.4" }
+microutils-kotlin-logging = { module = "io.github.microutils:kotlin-logging", version = "2.0.6" }
+
+pw-forst-tools-katlib = { module = "pw.forst.tools:katlib", version = "1.2.1" }
+java-dev-jna = { module = "net.java.dev.jna:jna", version = "5.7.0" }
+jetbrains-exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
+jetbrains-exposed-dao = { module = "org.jetbrains.exposed:exposed-dao", version.ref = "exposed" }
+jetbrains-exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "exposed" }
+jetbrains-exposed-java = { module = "org.jetbrains.exposed:exposed-java-time", version.ref = "exposed" }
+xerial-sqlite-jdbc = { module = "org.xerial:sqlite-jdbc", version = "3.34.0" }
+fasterxml-jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version = "2.11.1" }
+
+jetbrains-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version = "1.4.31" }
 
 wire-xenon = { module = "com.wire:xenon", version.ref = "wire-xenon" }
 wire-helium = { module = "com.wire:helium", version.ref = "wire-helium" }
@@ -59,21 +89,21 @@ junit = { module = "junit:junit", version.ref = "junit" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform-launcher" }
 
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-gradle-plugin" }
-pluginz-konan = { module = "org.jetbrains.kotlin.konan:org.jetbrains.kotlin.konan.gradle.plugin", version.ref = "jetbrains-konan-gradle-plugin" }
+konan = { module = "org.jetbrains.kotlin.konan:org.jetbrains.kotlin.konan.gradle.plugin", version.ref = "jetbrains-konan-gradle-plugin" }
 github-johnrengelman-shadow = { module = "com.github.johnrengelman:shadow", version.ref = "johnrengelman-shadow" }
 
 nemerosa-versioning = { module = "net.nemerosa.versioning:net.nemerosa.versioning.gradle.plugin", version.ref = "nemerosa-versioning" }
 
-pluginz-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "jetbrains-kotlin-test" }
-pluginz-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "jetbrains-kotlin-test" }
-pluginz-script-runtime = { module = "org.jetbrains.kotlin:kotlin-script-runtime", version.ref = "jetbrains-kotlin-test" }
+test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "jetbrains-kotlin-test" }
+test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "jetbrains-kotlin-test" }
+script-runtime = { module = "org.jetbrains.kotlin:kotlin-script-runtime", version.ref = "jetbrains-kotlin-test" }
 
 # `plugins` is a keyword in version catalogs.
 # Check https://docs.gradle.org/current/userguide/platforms.html#sec:version-catalog-plugin
 #  if we ever wanna migrate to this.
-pluginz-android = { module = "com.android.tools.build:gradle", version = "8.5.0" }
-pluginz-binaryCompatibilityValidator = { module = "org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin", version = "0.15.1" }
-pluginz-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+android = { module = "com.android.tools.build:gradle", version = "8.5.0" }
+binaryCompatibilityValidator = { module = "org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin", version = "0.15.1" }
+kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 
 grpc-genJava = { module = "io.grpc:protoc-gen-grpc-java", version.ref = "grpc" }
 grpc-netty = { module = "io.grpc:grpc-netty", version.ref = "grpc" }
