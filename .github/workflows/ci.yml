@@ -31,10 +31,6 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
-      - name: Display JDK version
-        run: |
-          java -version
-
       - name: Build application
         run: |
           ./gradlew assemble
@@ -111,7 +107,7 @@ jobs:
       # Creates release zip
       - name: Create release zip
         run: |
-          cp build/libs/backup-export.jar .
+          cp app/build/libs/backup-export.jar .
           zip -r backup-export.zip backup-export.jar libs README.md
 
       # Obtains release URL to upload assets

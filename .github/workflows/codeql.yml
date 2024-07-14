@@ -29,11 +29,14 @@ jobs:
       matrix:
         include:
         - language: java-kotlin
-          build-mode: autobuild
+          build-mode: manual
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        submodules: recursive
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
@@ -43,14 +46,20 @@ jobs:
         build-mode: ${{ matrix.build-mode }}
 
     - if: matrix.build-mode == 'manual'
-      shell: bash
+      name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        # Running setup-java again overwrites the settings.xml
+        distribution: "temurin"
+        java-version: ${{ matrix.java }}
+
+    - if: matrix.build-mode == 'manual'
+      name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
+
+    - if: matrix.build-mode == 'manual'
       run: |
-        echo 'If you are using a "manual" build mode for one or more of the' \
-          'languages you are analyzing, replace this with the commands to build' \
-          'your code, for example:'
-        echo '  make bootstrap'
-        echo '  make release'
-        exit 1
+        ./gradlew assemble
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
