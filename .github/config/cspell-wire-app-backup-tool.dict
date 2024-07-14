@@ -5,6 +5,7 @@ bruceadams
 buildx
 Buildx
 classpath
+commonmark
 conv
 cryptobox
 ctxt
@@ -15,6 +16,7 @@ dejans
 Djava
 Djna
 donotpresent
+Dropwizard
 Dskip
 ehthumbs
 encryptable
@@ -44,11 +46,16 @@ ktlint
 lazycode
 lazysodium
 libsodium
+lingala
 Lukas
+microutils
 mpeltonen
 msix
 nemerosa
+openhtmltopdf
 ossrh
+pdfbox
+picocli
 pinentry
 pluginz
 protobuf
@@ -59,6 +66,7 @@ setlocal
 sonarlint
 Sonarlint
 sonatype
+spullara
 sqlobject
 stackdump
 taged
@@ -67,3 +75,4 @@ temurin
 timemachine
 tyrus
 wirebot
+xerial

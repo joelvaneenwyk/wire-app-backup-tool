@@ -10,6 +10,15 @@ plugins {
 }
 
 dependencies {
+    api(libs.jakarta.ws.rs.jakarta.ws.rs.api)
+    api(libs.org.glassfish.tyrus.bundles.tyrus.standalone.client)
+    api(libs.org.glassfish.jersey.core.jersey.client)
+    api(libs.org.flywaydb.flyway.core)
+    api(libs.org.glassfish.jersey.inject.jersey.hk2)
+    api(libs.com.fasterxml.jackson.jaxrs.jackson.jaxrs.json.provider)
+
+    api(libs.katlib)
+
     implementation("org.apache.commons:commons-text")
 
     implementation(libs.wire.xenon)
@@ -20,25 +29,6 @@ dependencies {
 
     implementation(libs.github.johnrengelman.shadow)
     implementation(libs.nemerosa.versioning)
-
-    testImplementation(libs.test)
-    testImplementation(libs.test.junit5)
-    testImplementation(libs.script.runtime)
-
-    testImplementation(libs.junit.jupiter.engine)
-
-    testRuntimeOnly(libs.junit.platform.launcher)
-
-    // ------- Java dependencies -------
-
-    api(libs.jakarta.ws.rs.jakarta.ws.rs.api)
-    api(libs.org.glassfish.tyrus.bundles.tyrus.standalone.client)
-    api(libs.org.glassfish.jersey.core.jersey.client)
-    api(libs.org.flywaydb.flyway.core)
-    api(libs.org.glassfish.jersey.inject.jersey.hk2)
-    api(libs.com.fasterxml.jackson.jaxrs.jackson.jaxrs.json.provider)
-
-    api(libs.katlib)
 
     // command line arguments parsing
     implementation(libs.picocli)
@@ -75,6 +65,14 @@ dependencies {
 
     // correct reflect lib until jackson fixes theirs
     implementation(libs.jetbrains.kotlin.reflect)
+
+    testImplementation(libs.test)
+    testImplementation(libs.test.junit5)
+    testImplementation(libs.script.runtime)
+
+    testImplementation(libs.junit.jupiter.engine)
+
+    testRuntimeOnly(libs.junit.platform.launcher)
 }
 
 group = "com.wire.backups"
