@@ -11,11 +11,11 @@ plugins {
 
 dependencies {
     api(libs.jakarta.ws.rs.jakarta.ws.rs.api)
-    api(libs.org.glassfish.tyrus.bundles.tyrus.standalone.client)
-    api(libs.org.glassfish.jersey.core.jersey.client)
-    api(libs.org.flywaydb.flyway.core)
-    api(libs.org.glassfish.jersey.inject.jersey.hk2)
-    api(libs.com.fasterxml.jackson.jaxrs.jackson.jaxrs.json.provider)
+    api(libs.glassfish.tyrus.bundles.tyrus.standalone.client)
+    api(libs.glassfish.jersey.core.jersey.client)
+    api(libs.flywaydb.flyway.core)
+    api(libs.glassfish.jersey.inject.jersey.hk2)
+    api(libs.fasterxml.jackson.jaxrs.jackson.jaxrs.json.provider)
 
     api(libs.katlib)
 

@@ -4,151 +4,110 @@
 # https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
 
 [versions]
-wire-xenon = "1.4.6"
-wire-helium = "1.3.1"
-
-junit = "4.13.2"
-kotlin = "1.9.24"
-grpc = "1.65.0"
-
-protobuf = "3.24.3"
-protobufGradlePlugin = "0.9.4"
-
+atlassian = "0.17.1"
 cryptobox4j = "1.3.0"
-
-postgresql = "42.7.3"
-
+exposed = "0.30.1"
+fasterxml-jackson-jaxrs-jackson-jaxrs-json-provider = "2.14.2"
 flyway-core = "9.15.1"
+flywaydb-flyway-core = "8.5.12"
+glassfish-jersey-core-jersey-client = "2.32"
+glassfish-jersey-inject-jersey-hk2 = "2.32"
+glassfish-tyrus-bundles-tyrus-standalone-client = "1.13.1"
+grpc = "1.65.0"
+html-to-pdf = "1.0.6"
 jackson-annotations = "2.15.1"
 jackson-databind = "2.15.2"
-javax-validation = "2.0.1.Final"
-jdbi3-sqlobject = "3.37.1"
-junit-jupiter-api = "5.9.2"
-junit-jupiter-engine = "5.9.2"
-slf4j-simple = "2.0.13"
-
-kotlin-gradle-plugin = "1.9.22"
-jetbrains-konan-gradle-plugin = "1.3.41"
-johnrengelman-shadow = "8.1.1"
-
-jetbrains-kotlin-test = "2.0.0"
-
-nemerosa-versioning = "3.1.0"
-
-com-fasterxml-jackson-jaxrs-jackson-jaxrs-json-provider = "2.14.2"
 jakarta-ws-rs-jakarta-ws-rs-api = "2.1.6"
 javax-activation-activation = "1.1.1"
-org-flywaydb-flyway-core = "8.5.12"
-org-glassfish-jersey-core-jersey-client = "2.32"
-org-glassfish-jersey-inject-jersey-hk2 = "2.32"
-org-glassfish-tyrus-bundles-tyrus-standalone-client = "1.13.1"
-org-junit-jupiter-junit-jupiter = "5.8.2"
-org-junit-jupiter-junit-jupiter-engine = "5.8.2"
-org-postgresql-postgresql = "42.3.8"
-org-slf4j-slf4j-api = "1.7.36"
-org-slf4j-slf4j-log4j12 = "1.7.36"
-
+javax-validation = "2.0.1.Final"
+jdbi3-sqlobject = "3.37.1"
+jetbrains-konan-gradle-plugin = "1.3.41"
+jetbrains-kotlin-test = "2.0.0"
+johnrengelman-shadow = "8.1.1"
+junit = "4.13.2"
+junit-jupiter = "5.8.2"
+junit-jupiter-api = "5.9.2"
+junit-jupiter-engine = "5.9.2"
 junit-platform-launcher = "1.10.3"
-
+kotlin = "1.9.24"
+kotlin-gradle-plugin = "1.9.22"
+nemerosa-versioning = "3.1.0"
 picocli = "4.6.1"
-atlassian = "0.17.1"
-html-to-pdf = "1.0.6"
-exposed = "0.30.1"
+postgresql = "42.7.3"
+postgresql-postgresql = "42.3.8"
+protobuf = "3.24.3"
+protobufGradlePlugin = "0.9.4"
+slf4j-api = "1.7.36"
+slf4j-log4j12 = "1.7.36"
+slf4j-simple = "2.0.13"
+wire-helium = "1.3.1"
+wire-xenon = "1.4.6"
 
 [libraries]
-
-picocli = { module = "info.picocli:picocli", version.ref = "picocli" }
-
-commonmark = { module = "org.commonmark:commonmark", version.ref = "atlassian" }
-commonmark-ext-autolink = { module = "org.commonmark:commonmark-ext-autolink", version.ref = "atlassian" }
-
-openhtmltopdf-core = { module = "com.openhtmltopdf:openhtmltopdf-core", version.ref = "html-to-pdf" }
-openhtmltopdf-pdfbox = { module = "com.openhtmltopdf:openhtmltopdf-pdfbox", version.ref = "html-to-pdf" }
-openhtmltopdf-svg-support = { module = "com.openhtmltopdf:openhtmltopdf-svg-support", version.ref = "html-to-pdf" }
-spullara-mustache-java-compiler = { module = "com.github.spullara.mustache.java:compiler", version ="0.9.7" }
-
-lingala-zip4j = { module = "net.lingala.zip4j:zip4j", version = "2.6.1" }
-lazycode-lazysodium-java = { module = "com.goterl.lazycode:lazysodium-java", version = "4.3.4" }
-microutils-kotlin-logging = { module = "io.github.microutils:kotlin-logging", version = "2.0.6" }
-
-pw-forst-tools-katlib = { module = "pw.forst.tools:katlib", version = "1.2.1" }
-java-dev-jna = { module = "net.java.dev.jna:jna", version = "5.7.0" }
-jetbrains-exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
-jetbrains-exposed-dao = { module = "org.jetbrains.exposed:exposed-dao", version.ref = "exposed" }
-jetbrains-exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "exposed" }
-jetbrains-exposed-java = { module = "org.jetbrains.exposed:exposed-java-time", version.ref = "exposed" }
-xerial-sqlite-jdbc = { module = "org.xerial:sqlite-jdbc", version = "3.34.0" }
-fasterxml-jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version = "2.11.1" }
-
-jetbrains-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version = "1.4.31" }
-
-wire-xenon = { module = "com.wire:xenon", version.ref = "wire-xenon" }
-wire-helium = { module = "com.wire:helium", version.ref = "wire-helium" }
-
-junit = { module = "junit:junit", version.ref = "junit" }
-junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform-launcher" }
-
-kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-gradle-plugin" }
-konan = { module = "org.jetbrains.kotlin.konan:org.jetbrains.kotlin.konan.gradle.plugin", version.ref = "jetbrains-konan-gradle-plugin" }
-github-johnrengelman-shadow = { module = "com.github.johnrengelman:shadow", version.ref = "johnrengelman-shadow" }
-
-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "jetbrains-kotlin-test" }
-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "jetbrains-kotlin-test" }
-script-runtime = { module = "org.jetbrains.kotlin:kotlin-script-runtime", version.ref = "jetbrains-kotlin-test" }
-
-# `plugins` is a keyword in version catalogs.
-# Check https://docs.gradle.org/current/userguide/platforms.html#sec:version-catalog-plugin
-#  if we ever wanna migrate to this.
 android = { module = "com.android.tools.build:gradle", version = "8.5.0" }
 binaryCompatibilityValidator = { module = "org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin", version = "0.15.1" }
-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-
+com-goterl-lazycode-lazysodium-java = { module = "com.goterl.lazycode:lazysodium-java", version = "4.3.4" }
+commonmark = { module = "org.commonmark:commonmark", version.ref = "atlassian" }
+commonmark-ext-autolink = { module = "org.commonmark:commonmark-ext-autolink", version.ref = "atlassian" }
+cryptobox4j = { module = "com.wire:cryptobox4j", version.ref = "cryptobox4j" }
+fasterxml-jackson-jaxrs-jackson-jaxrs-json-provider = { module = "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider", version.ref = "fasterxml-jackson-jaxrs-jackson-jaxrs-json-provider" }
+fasterxml-jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version = "2.11.1" }
+flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "flyway-core" }
+flywaydb-flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "flywaydb-flyway-core" }
+github-johnrengelman-shadow = { module = "com.github.johnrengelman:shadow", version.ref = "johnrengelman-shadow" }
+glassfish-jersey-core-jersey-client = { module = "org.glassfish.jersey.core:jersey-client", version.ref = "glassfish-jersey-core-jersey-client" }
+glassfish-jersey-inject-jersey-hk2 = { module = "org.glassfish.jersey.inject:jersey-hk2", version.ref = "glassfish-jersey-inject-jersey-hk2" }
+glassfish-tyrus-bundles-tyrus-standalone-client = { module = "org.glassfish.tyrus.bundles:tyrus-standalone-client", version.ref = "glassfish-tyrus-bundles-tyrus-standalone-client" }
 grpc-genJava = { module = "io.grpc:protoc-gen-grpc-java", version.ref = "grpc" }
 grpc-netty = { module = "io.grpc:grpc-netty", version.ref = "grpc" }
 grpc-protobuf = { module = "io.grpc:grpc-protobuf", version.ref = "grpc" }
 grpc-stub = { module = "io.grpc:grpc-stub", version.ref = "grpc" }
-
+jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson-annotations" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson-databind" }
+jakarta-ws-rs-jakarta-ws-rs-api = { module = "jakarta.ws.rs:jakarta.ws.rs-api", version.ref = "jakarta-ws-rs-jakarta-ws-rs-api" }
+java-dev-jna = { module = "net.java.dev.jna:jna", version = "5.7.0" }
+javax-activation-activation = { module = "javax.activation:activation", version.ref = "javax-activation-activation" }
+javax-validation = { module = "javax.validation:validation-api", version.ref = "javax-validation" }
+jdbi3-sqlobject = { module = "org.jdbi:jdbi3-sqlobject", version.ref = "jdbi3-sqlobject" }
+jetbrains-exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
+jetbrains-exposed-dao = { module = "org.jetbrains.exposed:exposed-dao", version.ref = "exposed" }
+jetbrains-exposed-java = { module = "org.jetbrains.exposed:exposed-java-time", version.ref = "exposed" }
+jetbrains-exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "exposed" }
+jetbrains-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version = "1.4.31" }
+junit = { module = "junit:junit", version.ref = "junit" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit-jupiter-api" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter-engine" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform-launcher" }
+katlib = { module = "pw.forst.tools:katlib", version = "1.2.1" }
+konan = { module = "org.jetbrains.kotlin.konan:org.jetbrains.kotlin.konan.gradle.plugin", version.ref = "jetbrains-konan-gradle-plugin" }
+kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-gradle-plugin" }
+lazycode-lazysodium-java = { module = "com.goterl.lazycode:lazysodium-java", version = "4.3.4" }
+lingala-zip4j = { module = "net.lingala.zip4j:zip4j", version = "2.6.1" }
+microutils-kotlin-logging = { module = "io.github.microutils:kotlin-logging", version = "2.0.6" }
+openhtmltopdf-core = { module = "com.openhtmltopdf:openhtmltopdf-core", version.ref = "html-to-pdf" }
+openhtmltopdf-pdfbox = { module = "com.openhtmltopdf:openhtmltopdf-pdfbox", version.ref = "html-to-pdf" }
+openhtmltopdf-svg-support = { module = "com.openhtmltopdf:openhtmltopdf-svg-support", version.ref = "html-to-pdf" }
+picocli = { module = "info.picocli:picocli", version.ref = "picocli" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+postgresql-postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql-postgresql" }
 protobuf-gradlePlugin = { module = "com.google.protobuf:protobuf-gradle-plugin", version.ref = "protobufGradlePlugin" }
 protobuf-java = { module = "com.google.protobuf:protobuf-java", version.ref = "protobuf" }
 protobuf-javaUtil = { module = "com.google.protobuf:protobuf-java-util", version.ref = "protobuf" }
 protobuf-protoc = { module = "com.google.protobuf:protoc", version.ref = "protobuf" }
-
-jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson-annotations" }
-jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson-databind" }
-
-cryptobox4j = { module = "com.wire:cryptobox4j", version.ref = "cryptobox4j" }
-
-postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
-
-flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "flyway-core" }
-javax-validation = { module = "javax.validation:validation-api", version.ref = "javax-validation" }
-jdbi3-sqlobject = { module = "org.jdbi:jdbi3-sqlobject", version.ref = "jdbi3-sqlobject" }
-junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit-jupiter-api" }
-junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter-engine" }
+pw-forst-tools-katlib = { module = "pw.forst.tools:katlib", version = "1.2.1" }
+script-runtime = { module = "org.jetbrains.kotlin:kotlin-script-runtime", version.ref = "jetbrains-kotlin-test" }
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j-api" }
+slf4j-log4j12 = { module = "org.slf4j:slf4j-log4j12", version.ref = "slf4j-log4j12" }
 slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j-simple" }
-
-katlib = { module = "pw.forst.tools:katlib", version = "1.2.1" }
-com-goterl-lazycode-lazysodium-java = { module = "com.goterl.lazycode:lazysodium-java", version = "4.3.4" }
-exposed-core = { module = "org.jetbrains.exposed:exposed-core", version = "0.30.1" }
-exposed-dao = { module = "org.jetbrains.exposed:exposed-dao", version = "0.30.1" }
-exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version = "0.30.1" }
-exposed-java-time = { module = "org.jetbrains.exposed:exposed-java-time", version = "0.30.1" }
-
-# Helium
-com-fasterxml-jackson-jaxrs-jackson-jaxrs-json-provider = { module = "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider", version.ref = "com-fasterxml-jackson-jaxrs-jackson-jaxrs-json-provider" }
-jakarta-ws-rs-jakarta-ws-rs-api = { module = "jakarta.ws.rs:jakarta.ws.rs-api", version.ref = "jakarta-ws-rs-jakarta-ws-rs-api" }
-javax-activation-activation = { module = "javax.activation:activation", version.ref = "javax-activation-activation" }
-org-flywaydb-flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "org-flywaydb-flyway-core" }
-org-glassfish-jersey-core-jersey-client = { module = "org.glassfish.jersey.core:jersey-client", version.ref = "org-glassfish-jersey-core-jersey-client" }
-org-glassfish-jersey-inject-jersey-hk2 = { module = "org.glassfish.jersey.inject:jersey-hk2", version.ref = "org-glassfish-jersey-inject-jersey-hk2" }
-org-glassfish-tyrus-bundles-tyrus-standalone-client = { module = "org.glassfish.tyrus.bundles:tyrus-standalone-client", version.ref = "org-glassfish-tyrus-bundles-tyrus-standalone-client" }
-org-junit-jupiter-junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "org-junit-jupiter-junit-jupiter" }
-org-junit-jupiter-junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "org-junit-jupiter-junit-jupiter-engine" }
-org-postgresql-postgresql = { module = "org.postgresql:postgresql", version.ref = "org-postgresql-postgresql" }
-org-slf4j-slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "org-slf4j-slf4j-api" }
-org-slf4j-slf4j-log4j12 = { module = "org.slf4j:slf4j-log4j12", version.ref = "org-slf4j-slf4j-log4j12" }
+spullara-mustache-java-compiler = { module = "com.github.spullara.mustache.java:compiler", version ="0.9.7" }
+test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "jetbrains-kotlin-test" }
+test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "jetbrains-kotlin-test" }
+wire-helium = { module = "com.wire:helium", version.ref = "wire-helium" }
+wire-xenon = { module = "com.wire:xenon", version.ref = "wire-xenon" }
+xerial-sqlite-jdbc = { module = "org.xerial:sqlite-jdbc", version = "3.34.0" }
 
 [plugins]
-
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version = "1.5.32" }
 nemerosa-versioning = { id = "net.nemerosa.versioning", version.ref = "nemerosa-versioning" }

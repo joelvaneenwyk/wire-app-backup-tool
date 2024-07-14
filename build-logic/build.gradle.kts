@@ -16,23 +16,23 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.kotlin.gradle.plugin)
     implementation(libs.github.johnrengelman.shadow)
+    implementation(libs.kotlin.gradle.plugin)
 
     implementation(libs.wire.xenon)
     implementation(libs.wire.helium)
 
+    api(libs.fasterxml.jackson.jaxrs.jackson.jaxrs.json.provider)
     api(libs.jakarta.ws.rs.jakarta.ws.rs.api)
-    api(libs.org.glassfish.tyrus.bundles.tyrus.standalone.client)
-    api(libs.org.glassfish.jersey.core.jersey.client)
-    api(libs.org.flywaydb.flyway.core)
-    api(libs.org.glassfish.jersey.inject.jersey.hk2)
-    api(libs.com.fasterxml.jackson.jaxrs.jackson.jaxrs.json.provider)
+    api(libs.flywaydb.flyway.core)
+    api(libs.glassfish.jersey.core.jersey.client)
+    api(libs.glassfish.jersey.inject.jersey.hk2)
+    api(libs.glassfish.tyrus.bundles.tyrus.standalone.client)
 
-    testImplementation(libs.org.slf4j.slf4j.api)
-    testImplementation(libs.org.slf4j.slf4j.log4j12)
+    testImplementation(libs.slf4j.api)
+    testImplementation(libs.slf4j.log4j12)
     testImplementation(libs.javax.activation.activation)
-    testImplementation(libs.org.postgresql.postgresql)
-    testImplementation(libs.org.junit.jupiter.junit.jupiter)
-    testImplementation(libs.org.junit.jupiter.junit.jupiter.engine)
+    testImplementation(libs.postgresql.postgresql)
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.junit.jupiter.engine)
 }
