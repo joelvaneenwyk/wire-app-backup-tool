@@ -109,5 +109,5 @@ wire-xenon = { module = "com.wire:xenon", version.ref = "wire-xenon" }
 xerial-sqlite-jdbc = { module = "org.xerial:sqlite-jdbc", version = "3.34.0" }
 
 [plugins]
-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version = "1.5.32" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version = "2.0.10" }
 nemerosa-versioning = { id = "net.nemerosa.versioning", version.ref = "nemerosa-versioning" }
