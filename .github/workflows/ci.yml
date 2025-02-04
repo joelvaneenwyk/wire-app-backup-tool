@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu]
-        java: [11]
+        java: [17]
 
     steps:
       - uses: actions/checkout@v4
