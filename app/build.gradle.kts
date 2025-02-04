@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.apache.commons:commons-text")
+    implementation(libs.apache.commons)
 
     api(libs.fasterxml.jackson.jaxrs.jackson.jaxrs.json.provider)
     api(libs.flywaydb.flyway.core)
