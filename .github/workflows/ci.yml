@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main, develop]
 
+env:
+  DEFAULT_JAVA_VERSION: 17
+
 jobs:
   test:
     runs-on: "${{ matrix.os }}-latest"
@@ -29,15 +32,11 @@ jobs:
           java-version: ${{ matrix.java }}
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/actions/setup-gradle@v4
 
       - name: Build application
         run: |
           ./gradlew assemble
-
-      - name: Build final shadow jar
-        run: |
-          ./gradlew shadowJar
 
       - name: Run tests application
         run: |
@@ -46,6 +45,7 @@ jobs:
   build_server:
     needs: test
     runs-on: ubuntu-20.04
+    name: Build Server
     steps:
       - uses: actions/checkout@v4
         with:
@@ -82,6 +82,7 @@ jobs:
 
   jar_release:
     needs: build_server
+    name: Release (Jar)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -94,15 +95,10 @@ jobs:
         with:
           # Running setup-java again overwrites the settings.xml
           distribution: "temurin"
-          java-version: 11
+          java-version: ${{ env.DEFAULT_JAVA_VERSION }}
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
-
-      # Builds application
-      - name: Build application
-        run: |
-          ./gradlew shadowJar
 
       # Creates release zip
       - name: Create release zip
@@ -172,7 +168,7 @@ jobs:
       with:
         # Running setup-java again overwrites the settings.xml
         distribution: "temurin"
-        java-version: ${{ matrix.java }}
+        java-version: ${{ env.DEFAULT_JAVA_VERSION }}
 
     - if: matrix.build-mode == 'manual'
       name: Setup Gradle
