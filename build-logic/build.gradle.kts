@@ -4,7 +4,11 @@
 
 plugins {
     // Support convention plugins written in Kotlin. Convention plugins are build scripts in 'src/main' that automatically become available as plugins in the main build.
-    `kotlin-dsl`
+    id("org.gradle.kotlin.kotlin-dsl") version("5.1.2")
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 repositories {
@@ -36,8 +40,4 @@ dependencies {
     testImplementation(libs.postgresql.postgresql)
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.junit.jupiter.engine)
-}
-
-kotlin {
-    jvmToolchain(17)
 }
