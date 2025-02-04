@@ -18,6 +18,7 @@ repositories {
 dependencies {
     implementation(libs.github.johnrengelman.shadow)
     implementation(libs.kotlin.gradle.plugin)
+    implementation(libs.lazycode.lazysodium.java)
 
     implementation(libs.wire.xenon)
     implementation(libs.wire.helium)

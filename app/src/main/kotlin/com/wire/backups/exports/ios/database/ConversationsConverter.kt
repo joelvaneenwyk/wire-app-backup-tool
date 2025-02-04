@@ -5,7 +5,7 @@ import com.wire.backups.exports.ios.model.ConversationDto
 import com.wire.backups.exports.utils.mapCatching
 import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.select
-import pw.forst.tools.katlib.toUuid
+import dev.forst.katlib.toUuid
 import java.util.UUID
 
 

@@ -2,7 +2,7 @@ package com.wire.backups.exports.android.database.converters
 
 import com.wire.backups.exports.android.database.dto.DatabaseMetadata
 import com.wire.backups.exports.android.database.loaders.BackupExport
-import pw.forst.tools.katlib.toUuid
+import dev.forst.katlib.toUuid
 import java.util.UUID
 
 internal fun BackupExport.getDatabaseMetadata(myId: UUID) =

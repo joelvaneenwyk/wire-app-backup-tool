@@ -2,7 +2,7 @@ package com.wire.backups.exports.android.decryption
 
 import com.wire.backups.exports.android.model.ExportMetadata
 import net.lingala.zip4j.ZipFile
-import pw.forst.tools.katlib.parseJson
+import dev.forst.katlib.parseJson
 import java.io.File
 import java.util.UUID
 

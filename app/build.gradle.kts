@@ -19,6 +19,7 @@ dependencies {
     api(libs.glassfish.tyrus.bundles.tyrus.standalone.client)
     api(libs.jakarta.ws.rs.jakarta.ws.rs.api)
     api(libs.katlib)
+    api(libs.lazycode.lazysodium.java)
 
     // command line arguments parsing
     implementation(libs.picocli)
@@ -44,7 +45,7 @@ dependencies {
     implementation(libs.lazycode.lazysodium.java)
     implementation(libs.lingala.zip4j)
     implementation(libs.microutils.kotlin.logging)
-    implementation(libs.pw.forst.tools.katlib)
+    implementation(libs.katlib)
     implementation(libs.spullara.mustache.java.compiler)
     implementation(libs.xerial.sqlite.jdbc)
 
