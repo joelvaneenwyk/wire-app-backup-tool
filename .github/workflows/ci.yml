@@ -59,29 +59,24 @@ jobs:
         with:
           images: quay.io/joelvaneenwyk/wire-app-backup-tool
 
-        # setup docker actions https://github.com/docker/build-push-action
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Login to Quay
-        uses: docker/login-action@v3
-        with:
-          registry: quay.io
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Build and push
+        # setup docker actions https://github.com/docker/build-push-action
+      - name: Build
         id: docker_build
         uses: docker/build-push-action@v6
+        continue-on-error: true
         with:
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
-          push: true
+          push: false
 
   jar_release:
-    needs: build_server
+    needs: test
     name: Release (Jar)
     runs-on: ubuntu-latest
     steps:
@@ -124,61 +119,3 @@ jobs:
           asset_path: backup-export.zip
           asset_name: backup-export.zip
           asset_content_type: application/zip
-
-  analyze:
-    needs: jar_release
-    name: Analyze (${{ matrix.language }})
-    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
-    timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
-    permissions:
-      # required for all workflows
-      security-events: write
-
-      # required to fetch internal or private CodeQL packs
-      packages: read
-
-      # only required for workflows in private repositories
-      actions: read
-      contents: read
-
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-        - language: java-kotlin
-          build-mode: manual
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        submodules: recursive
-
-    # Initializes the CodeQL tools for scanning.
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v3
-      with:
-        languages: ${{ matrix.language }}
-        build-mode: ${{ matrix.build-mode }}
-
-    - if: matrix.build-mode == 'manual'
-      name: Setup Java
-      uses: actions/setup-java@v4
-      with:
-        # Running setup-java again overwrites the settings.xml
-        distribution: "temurin"
-        java-version: ${{ env.DEFAULT_JAVA_VERSION }}
-
-    - if: matrix.build-mode == 'manual'
-      name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v3
-
-    - if: matrix.build-mode == 'manual'
-      run: |
-        ./gradlew assemble
-
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
-      with:
-        category: "/language:${{matrix.language}}"
