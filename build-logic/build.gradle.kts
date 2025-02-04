@@ -39,7 +39,5 @@ dependencies {
 }
 
 kotlin {
-    jvmToolchain {
-        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(22))
-    }
+    jvmToolchain(17)
 }

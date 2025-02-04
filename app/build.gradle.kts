@@ -1,7 +1,7 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.konan.properties.saveToFile
 import java.util.Properties
-import org.jetbrains.kotlin.konan.file.File
+import java.io.File
 
 plugins {
     id("buildlogic.java-application-conventions")
@@ -123,9 +123,10 @@ tasks {
     register("createVersionFile") {
         dependsOn(processResources)
         doLast {
+            val versionFile = layout.buildDirectory.file("resources/main/version.properties").get().asFile
             Properties().apply {
                 setProperty("version", project.version.toString())
-                saveToFile(File("${layout.buildDirectory.get().asFile}/resources/main/version.properties"))
+                store(versionFile.outputStream(), null)
             }
         }
     }
