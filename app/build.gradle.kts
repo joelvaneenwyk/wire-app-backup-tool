@@ -7,6 +7,7 @@ plugins {
     id("buildlogic.java-application-conventions")
     alias(libs.plugins.jetbrains.kotlin.jvm)
     alias(libs.plugins.nemerosa.versioning)
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 repositories {
