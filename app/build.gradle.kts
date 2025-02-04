@@ -9,6 +9,14 @@ plugins {
     alias(libs.plugins.nemerosa.versioning)
 }
 
+repositories {
+    // Use the plugin portal to apply community plugins in convention plugins.
+    gradlePluginPortal()
+    mavenCentral()
+    google()
+    mavenLocal()
+}
+
 dependencies {
     implementation("org.apache.commons:commons-text")
 
@@ -80,6 +88,13 @@ kotlin {
     jvmToolchain(17)
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+        vendor.set(JvmVendorSpec.ADOPTIUM)
+    }
+}
+
 tasks {
     compileKotlin {}
     compileTestKotlin {}
@@ -114,21 +129,6 @@ tasks {
 
     test {
         useJUnitPlatform()
-    }
-
-    classes {
-        dependsOn("createVersionFile")
-    }
-
-    register("createVersionFile") {
-        dependsOn(processResources)
-        doLast {
-            val versionFile = layout.buildDirectory.file("resources/main/version.properties").get().asFile
-            Properties().apply {
-                setProperty("version", project.version.toString())
-                store(versionFile.outputStream(), null)
-            }
-        }
     }
 
     register("resolveDependencies") {
