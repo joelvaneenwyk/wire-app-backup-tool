@@ -134,3 +134,7 @@ gradle-app.setting
 
 # Ignore Wire backup files
 *.*_wbu
+
+/.git/
+
+.kotlin/
