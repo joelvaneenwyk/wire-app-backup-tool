@@ -19,6 +19,10 @@ tasks:
     cmds:
       - cmd: java -jar app/build/libs/backup-export.jar {{.CLI_ARGS | default "--help"}}
 
+  start:
+    cmds:
+      - cmd: sh "{{ joinPath .TASKFILE_DIR "start.sh"}}"
+
   git-submodules:
     sources:
       - .gitmodules
