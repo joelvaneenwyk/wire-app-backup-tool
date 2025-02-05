@@ -95,6 +95,10 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
+      - name: Build Jar
+        run: |
+          ./gradlew shadowJar
+
       # Creates release zip
       - name: Create release zip
         run: |
