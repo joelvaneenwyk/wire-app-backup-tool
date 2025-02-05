@@ -8,7 +8,7 @@ import com.wire.backups.exports.android.database.model.Message
 import com.wire.backups.exports.android.database.model.Model
 import com.wire.backups.exports.android.database.model.User
 import com.wire.backups.exports.utils.mapCatching
-import pw.forst.tools.katlib.parseJson
+import dev.forst.katlib.parseJson
 import java.io.File
 
 internal fun createBackupExport(root: File): BackupExport =

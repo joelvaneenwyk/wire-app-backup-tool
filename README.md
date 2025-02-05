@@ -1,27 +1,19 @@
 # Backup export tool
 
-[![GitHub version](https://badgen.net/github/release/joelvaneenwyk/wire-app-backup-tool)](https://github.com/joelvaneenwyk/wire-app-backup-tool/releases)
-![CI/CD](https://github.com/joelvaneenwyk/wire-app-backup-tool/workflows/CI/CD/badge.svg)
-![Release Pipeline](https://github.com/joelvaneenwyk/wire-app-backup-tool/actions/workflows/release.yml/badge.svg)
+[![Build](https://github.com/joelvaneenwyk/wire-app-backup-tool/actions/workflows/ci.yml/badge.svg)](https://github.com/joelvaneenwyk/wire-app-backup-tool/actions/workflows/ci.yml)
 
-Tool for generating PDF files from the backup. All backup formats are supported (Desktop, iOS, Android).
+Tool for generating PDF files from the backup. All backup formats are supported: Desktop, iOS, and Android.
 
 Please note that this tool is not for public use, but was rather developed for specific enterprise customers. However, we believe in
 open-source world, so if you manage to get it working, feel free to use it.
 
-## Download
-
-The latest stable version of the
-tool: [![GitHub version](https://badgen.net/github/release/joelvaneenwyk/wire-app-backup-tool)](https://github.com/joelvaneenwyk/wire-app-backup-tool/releases). Please use this version as the tag for the docker image - `quay.io/joelvaneenwyk/wire-app-backup-tool:<version>`. If you'd like to run the tool on bare metal, download all assets on the [release page](https://github.com/joelvaneenwyk/wire-app-backup-tool/releases).
-
-See available Docker image tags [here on Quay](https://quay.io/repository/joelvaneenwyk/wire-app-backup-tool?tab=tags).
-
 ## TL;DR
 
-How to generate PDF files using Desktop (or Web) app backup file
+How to generate PDF files using Desktop (or Web) app backup file.
 
-```bash
-java -jar backup-export.jar \
+```sh
+# This builds and runs with 'java -jar backup-export.jar'
+task run -- \
   web \
   "my_backup.desktop_wbu" \
   --email "dejan56@wire.com" \

@@ -1,16 +1,25 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.konan.properties.saveToFile
 import java.util.Properties
-import org.jetbrains.kotlin.konan.file.File
+import java.io.File
 
 plugins {
     id("buildlogic.java-application-conventions")
     alias(libs.plugins.jetbrains.kotlin.jvm)
     alias(libs.plugins.nemerosa.versioning)
+    id("com.github.johnrengelman.shadow") version "8.1.1"
+}
+
+repositories {
+    // Use the plugin portal to apply community plugins in convention plugins.
+    gradlePluginPortal()
+    mavenCentral()
+    google()
+    mavenLocal()
 }
 
 dependencies {
-    implementation("org.apache.commons:commons-text")
+    implementation(libs.apache.commons)
 
     api(libs.fasterxml.jackson.jaxrs.jackson.jaxrs.json.provider)
     api(libs.flywaydb.flyway.core)
@@ -19,6 +28,7 @@ dependencies {
     api(libs.glassfish.tyrus.bundles.tyrus.standalone.client)
     api(libs.jakarta.ws.rs.jakarta.ws.rs.api)
     api(libs.katlib)
+    api(libs.lazycode.lazysodium.java)
 
     // command line arguments parsing
     implementation(libs.picocli)
@@ -44,7 +54,7 @@ dependencies {
     implementation(libs.lazycode.lazysodium.java)
     implementation(libs.lingala.zip4j)
     implementation(libs.microutils.kotlin.logging)
-    implementation(libs.pw.forst.tools.katlib)
+    implementation(libs.katlib)
     implementation(libs.spullara.mustache.java.compiler)
     implementation(libs.xerial.sqlite.jdbc)
 
@@ -77,6 +87,13 @@ configure<JavaPluginExtension> {
 
 kotlin {
     jvmToolchain(17)
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+        vendor.set(JvmVendorSpec.ADOPTIUM)
+    }
 }
 
 tasks {
@@ -113,20 +130,6 @@ tasks {
 
     test {
         useJUnitPlatform()
-    }
-
-    classes {
-        dependsOn("createVersionFile")
-    }
-
-    register("createVersionFile") {
-        dependsOn(processResources)
-        doLast {
-            Properties().apply {
-                setProperty("version", project.version.toString())
-                saveToFile(File("${layout.buildDirectory.get().asFile}/resources/main/version.properties"))
-            }
-        }
     }
 
     register("resolveDependencies") {

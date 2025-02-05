@@ -1,6 +1,6 @@
 package com.wire.backups.exports.android.decryption
 
-import com.goterl.lazycode.lazysodium.SodiumJava
+import com.goterl.lazysodium.SodiumJava
 import com.sun.jna.NativeLong
 import com.wire.backups.exports.utils.LIBSODIUM_BINARIES_LOADING
 import com.wire.backups.exports.utils.crypto_aead_chacha20poly1305_keybytes
