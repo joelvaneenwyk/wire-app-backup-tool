@@ -1,6 +1,6 @@
 package com.wire.backups.exports.ios.export
 
-import pw.forst.tools.katlib.parseJson
+import dev.forst.katlib.parseJson
 import java.io.File
 
 /**

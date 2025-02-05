@@ -1,6 +1,6 @@
 package com.wire.backups.exports.utils
 
-import com.goterl.lazycode.lazysodium.utils.LibraryLoader
+import com.goterl.lazysodium.utils.LibraryLoader
 
 /**
  * Strategy used for loading Libsodium libraries.

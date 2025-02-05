@@ -1,33 +1,34 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.konan.properties.saveToFile
 import java.util.Properties
-import org.jetbrains.kotlin.konan.file.File
+import java.io.File
 
 plugins {
     id("buildlogic.java-application-conventions")
     alias(libs.plugins.jetbrains.kotlin.jvm)
     alias(libs.plugins.nemerosa.versioning)
+    id("com.github.johnrengelman.shadow") version "8.1.1"
+}
+
+repositories {
+    // Use the plugin portal to apply community plugins in convention plugins.
+    gradlePluginPortal()
+    mavenCentral()
+    google()
+    mavenLocal()
 }
 
 dependencies {
-    api(libs.jakarta.ws.rs.jakarta.ws.rs.api)
-    api(libs.glassfish.tyrus.bundles.tyrus.standalone.client)
-    api(libs.glassfish.jersey.core.jersey.client)
-    api(libs.flywaydb.flyway.core)
-    api(libs.glassfish.jersey.inject.jersey.hk2)
+    implementation(libs.apache.commons)
+
     api(libs.fasterxml.jackson.jaxrs.jackson.jaxrs.json.provider)
-
+    api(libs.flywaydb.flyway.core)
+    api(libs.glassfish.jersey.core.jersey.client)
+    api(libs.glassfish.jersey.inject.jersey.hk2)
+    api(libs.glassfish.tyrus.bundles.tyrus.standalone.client)
+    api(libs.jakarta.ws.rs.jakarta.ws.rs.api)
     api(libs.katlib)
-
-    implementation("org.apache.commons:commons-text")
-
-    implementation(libs.wire.xenon)
-    implementation(libs.wire.helium)
-
-    implementation(libs.konan)
-    implementation(libs.kotlin)
-
-    implementation(libs.github.johnrengelman.shadow)
+    api(libs.lazycode.lazysodium.java)
 
     // command line arguments parsing
     implementation(libs.picocli)
@@ -39,36 +40,32 @@ dependencies {
     implementation(libs.openhtmltopdf.core)
     implementation(libs.openhtmltopdf.pdfbox)
     implementation(libs.openhtmltopdf.svg.support)
-    implementation(libs.spullara.mustache.java.compiler)
 
-    // ------- Common dependencies -------
-    implementation(libs.lingala.zip4j)
-    implementation(libs.lazycode.lazysodium.java) {
-       // otherwise the application won't start, the problem is combination of Dropwizard and sl4j 2.0
-       exclude("org.slf4j", "slf4j-api")
-    }
-    implementation(libs.microutils.kotlin.logging)
+    implementation(libs.wire.xenon)
+    implementation(libs.wire.helium)
 
-    // ------- Kotlin dependencies -------
-    implementation(libs.pw.forst.tools.katlib)
+    implementation(libs.konan)
+    implementation(libs.kotlin)
+
+    implementation(libs.fasterxml.jackson.kotlin)
+    implementation(libs.github.johnrengelman.shadow)
     implementation(libs.java.dev.jna)
+    implementation(libs.jetbrains.kotlin.reflect)
+    implementation(libs.lazycode.lazysodium.java)
+    implementation(libs.lingala.zip4j)
+    implementation(libs.microutils.kotlin.logging)
+    implementation(libs.katlib)
+    implementation(libs.spullara.mustache.java.compiler)
+    implementation(libs.xerial.sqlite.jdbc)
 
     implementation(libs.jetbrains.exposed.core)
     implementation(libs.jetbrains.exposed.dao)
     implementation(libs.jetbrains.exposed.jdbc)
     implementation(libs.jetbrains.exposed.java)
-    implementation(libs.xerial.sqlite.jdbc)
-
-    // jackson for kotlin
-    implementation(libs.fasterxml.jackson.kotlin)
-
-    // correct reflect lib until jackson fixes theirs
-    implementation(libs.jetbrains.kotlin.reflect)
 
     testImplementation(libs.test)
     testImplementation(libs.test.junit5)
     testImplementation(libs.script.runtime)
-
     testImplementation(libs.junit.jupiter.engine)
 
     testRuntimeOnly(libs.junit.platform.launcher)
@@ -90,6 +87,13 @@ configure<JavaPluginExtension> {
 
 kotlin {
     jvmToolchain(17)
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+        vendor.set(JvmVendorSpec.ADOPTIUM)
+    }
 }
 
 tasks {
@@ -126,20 +130,6 @@ tasks {
 
     test {
         useJUnitPlatform()
-    }
-
-    classes {
-        dependsOn("createVersionFile")
-    }
-
-    register("createVersionFile") {
-        dependsOn(processResources)
-        doLast {
-            Properties().apply {
-                setProperty("version", project.version.toString())
-                saveToFile(File("${layout.buildDirectory.get().asFile}/resources/main/version.properties"))
-            }
-        }
     }
 
     register("resolveDependencies") {
