@@ -138,3 +138,5 @@ gradle-app.setting
 /.git/
 
 .kotlin/
+
+.task/
