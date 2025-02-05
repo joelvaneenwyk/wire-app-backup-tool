@@ -12,12 +12,12 @@ vars:
 tasks:
   default:
     cmds:
-      - task: build
+      - task: run
 
   run:
     deps: [shadow-jar]
     cmds:
-      - cmd: java -jar app/build/libs/backup-export.jar {{.CLI_ARGS}}
+      - cmd: java -jar app/build/libs/backup-export.jar {{.CLI_ARGS | default "--help"}}
 
   git-submodules:
     sources:
