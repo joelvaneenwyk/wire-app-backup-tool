@@ -58,7 +58,11 @@ tasks:
 
   docker-build:
     cmds:
-      - cmd: docker build -t joelvaneenwyk/wire-app-backup-tool .
+      - cmd: | # shell
+          docker build \
+            -t joelvaneenwyk/wire-app-backup-tool \
+            --progress=plain {{.CLI_ARGS}} \
+            .
 
   docker-push:
     cmds:
