@@ -1,6 +1,6 @@
 package com.wire.backups.exports.ios.decryption
 
-import com.goterl.lazycode.lazysodium.SodiumJava
+import com.goterl.lazysodium.SodiumJava
 import com.sun.jna.NativeLong
 import com.wire.backups.exports.utils.crypto_pwhash_argon2i_ALG_ARGON2I13
 import com.wire.backups.exports.utils.crypto_pwhash_argon2i_MEMLIMIT_MODERATE

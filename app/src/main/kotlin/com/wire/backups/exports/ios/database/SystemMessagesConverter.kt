@@ -11,7 +11,7 @@ import com.wire.backups.exports.utils.rowExportFailed
 import com.wire.backups.exports.utils.transactionsLogger
 import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.select
-import pw.forst.tools.katlib.whenFalse
+import dev.forst.katlib.whenFalse
 
 internal fun IosDatabase.getUserAddedToConversation(cache: EntityMappingCache): List<IosUserAddedToConversation> =
     userAddedEvents(cache)

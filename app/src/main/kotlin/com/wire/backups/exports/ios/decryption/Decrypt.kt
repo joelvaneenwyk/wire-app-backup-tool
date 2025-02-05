@@ -1,7 +1,7 @@
 package com.wire.backups.exports.ios.decryption
 
-import com.goterl.lazycode.lazysodium.SodiumJava
-import com.goterl.lazycode.lazysodium.interfaces.SecretStream
+import com.goterl.lazysodium.SodiumJava
+import com.goterl.lazysodium.interfaces.SecretStream
 import com.wire.backups.exports.utils.LIBSODIUM_BINARIES_LOADING
 import java.io.File
 import java.nio.ByteBuffer

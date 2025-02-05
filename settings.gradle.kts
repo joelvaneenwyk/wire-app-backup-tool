@@ -7,9 +7,19 @@
 
 rootProject.name = "wire-app-backup-tool"
 
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
 pluginManagement {
-    // Include 'plugins build' to define convention plugins.
-    includeBuild("build-logic")
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
 }
 
 plugins {
@@ -17,4 +27,6 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
 }
 
+// Include 'plugins build' to define convention plugins.
+includeBuild("build-logic")
 include("libs", "app")

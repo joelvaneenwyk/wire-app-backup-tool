@@ -6,7 +6,7 @@ import com.wire.backups.exports.utils.mapCatching
 import com.wire.backups.exports.utils.rowExportFailed
 import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.select
-import pw.forst.tools.katlib.toUuid
+import dev.forst.katlib.toUuid
 import java.util.UUID
 
 internal class EntityMappingCache(
