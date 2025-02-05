@@ -14,6 +14,11 @@ tasks:
     cmds:
       - task: build
 
+  run:
+    deps: [shadow-jar]
+    cmds:
+      - cmd: java -jar app/build/libs/backup-export.jar {{.CLI_ARGS}}
+
   git-submodules:
     sources:
       - .gitmodules
@@ -35,8 +40,8 @@ tasks:
       - cmd: |
           {{.GRADLEW}} build
 
-  create-shadow-jar:
-    aliases: [jar, shadow-jar, shadowJar]
+  shadow-jar:
+    aliases: [jar, shadowJar]
     deps: [git-submodules]
     sources:
       - ./**/*.java
